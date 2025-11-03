@@ -12,7 +12,7 @@ NAD-Workshop/
 ├── README.md           # This file
 ├── assets/             # Logo and background images
 │   ├── nadlogo.jpg     # Workshop logo (sidebar)
-│   └── background.jpg  # Hero section background
+│   └── background.jpg  # nad-cover section background
 └── images/             # Screenshot placeholders for instructions
     ├── pic-setup-step1.jpg
     ├── pic-setup-step2.jpg
@@ -41,7 +41,7 @@ NAD-Workshop/
 ### Assets (Required)
 ✅ Already included:
 - `assets/nadlogo.jpg` - Your workshop logo
-- `assets/background.jpg` - Hero section background
+- `assets/background.jpg` - nad-cover section background
 
 ### Images Folder (Screenshots for Instructions)
 To add your instruction screenshots, place them in the `images/` folder with these exact names:

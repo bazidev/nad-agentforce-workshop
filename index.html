@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NAD Agentforce Workshop: Building a Coral Clouds Service Agent</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
     <!-- Sidebar Toggle Button -->
@@ -55,10 +56,10 @@
     <!-- Main Content -->
     <div class="content-wrapper">
         <div class="container">
-            <!-- Hero Section with Cover Photo -->
-            <div class="hero">
-                <div class="hero-overlay"></div>
-                <div class="hero-content">
+            <!-- nad-cover Section with Cover Photo -->
+            <div class="nad-cover">
+                <div class="nad-cover-overlay"></div>
+                <div class="nad-cover-content">
                     <h1>Building the Coral Clouds Service Agent</h1>
                     <p>Your guide to creating an autonomous, AI-powered service agent using Agentforce, Flows, Apex, and Prompt Builder on the Salesforce Platform.</p>
                 </div>
@@ -68,15 +69,15 @@
             <section id="overview">
                 <h2>📚 Workshop Overview</h2>
                 <div class="overview-card">
-                    <h3>What We're Building and Why</h3>
-                    <p>You will construct a multi-functional Agentforce Service Agent (ASA) for Coral Clouds (our simulated company). This agent will be deployed directly to an Experience Cloud site, offering automated support and seamless handoff to human agents.</p>
-                    <p>The core goal is to enhance customer support and reduce manual workload by leveraging Salesforce's generative AI and automation capabilities.</p>
+                    <h3>What We're Building</h3>
+                    <p>You will construct a multi-functional Agentforce Service Agent (ASA) for Coral Clouds. This agent will be deployed directly to an Experience Cloud site, offering automated support and seamless handoff to human agents when needed.</p>
+                    <p>The core goal is to enhance customer support and reduce manual workload by leveraging Salesforce with Agentforce capabilities.</p>
 
                     <h3>Agent Key Capabilities:</h3>
                     <ul>
                         <li><strong>Intelligent Case Creation:</strong> Automatically gather information and create a Case linked to the customer's live chat session using a custom Flow.</li>
                         <li><strong>Contextual Summaries:</strong> Use a custom Apex action to retrieve customer contact details, and then an intelligent Prompt to summarize their account, including open cases and activities.</li>
-                        <li><strong>Knowledge-Based Answers:</strong> Answer common customer queries by searching the Salesforce Knowledge Base using the standard Answer Questions with Knowledge (AQWK) action.</li>
+                        <li><strong>Knowledge-Based Answers:</strong> Answer common customer queries by searching the Salesforce Knowledge Base using the standard Answer Questions with Knowledge action.</li>
                         <li><strong>Smooth Escalation:</strong> Route complex or unresolved issues directly to a human service agent using an Omni-Channel Flow.</li>
                     </ul>
                 </div>
@@ -86,10 +87,10 @@
 
             <!-- Pre-Work Section -->
             <section id="prework" data-section="prework">
-                <h2>📋 Pre-Work: Org Setup & Provisioning</h2>
+                <h2>Pre-Work: Org Setup & Provisioning</h2>
                 
                 <div class="hint">
-                    <p>💡 Complete these steps BEFORE the workshop to ensure you're ready to start building immediately.</p>
+                    <p>💡 Complete these steps before the workshop to ensure you're ready to start building immediately.</p>
                 </div>
 
                 <details class="step" data-step="prework-step1" open>
@@ -110,19 +111,18 @@
                         <p><strong>Self-Service Setup through Trailhead</strong></p>
                         
                         <ol>
-                            <li>On Trailhead go to the <strong><a href="https://trailhead.salesforce.com/content/learn/projects/quick-start-explore-the-coral-cloud-sample-app/deploy-the-coral-cloud-sample-app">Quick Start: Explore the Coral Cloud Sample App</a></strong> badge, and get a new <strong>Custom Data Cloud Playground org</strong>.</li>
+                            <li>On Trailhead go to the <a class="link" target="_blank" href="https://trailhead.salesforce.com/content/learn/projects/quick-start-explore-the-coral-cloud-sample-app/deploy-the-coral-cloud-sample-app">Quick Start: Explore the Coral Cloud Sample App</a> badge, and get a new <strong>Custom Data Cloud Playground org</strong>.</li>
                             <li>Make sure that you <strong>write down your user ID and password</strong>. You'll need them again later in this workshop.</li>
                             <li>Also make sure to <strong>connect your custom playground in Trailhead</strong>. After this workshop you can use the org to verify the badge.</li>
-                            <li>In your browser, go to <code>login.salesforce.com</code> and log in to your org.</li>
+                            <li>In your browser, go to <a class="link" target="_blank" href="https://login.salesforce.com">login.salesforce.com</a> and log in to your org.</li>
                         </ol>
                         
-                        <div class="hint">
-                            <p>💡 Keep your credentials safe! You'll need them throughout the workshop.</p>
+                        <div class="warning">
+                            <p>⚠️  Keep your credentials safe! You'll need them throughout the workshop.</p>
                         </div>
                         
                         <div class="image-placeholder">
                             <img src="images/pic-prework-step1.jpg" alt="Trailhead signup" class="instruction-image">
-                            <p class="image-caption">Figure: Get Custom Data Cloud Playground org from Trailhead</p>
                         </div>
                     </div>
                 </details>
@@ -145,9 +145,17 @@
                         <p><strong>Install and set up the Coral Cloud base package</strong></p>
                         
                         <ol>
-                            <li>Once logged in into your org, replace the URL segment that comes after <code>lightning.force.com</code> with:
+                            <li>Once logged in into your org, replace the URL segment that comes after <a class="link">"lightning.force.com"</lightning.force.com></a> with:
                                 <div class="code-block">
                                     <pre>/packaging/installPackage.apexp?p0=04tWx0000001taLIAQ</pre>
+                                </div>
+                                <p>for example, this:</p>
+                                <div class="code-block">
+                                    <pre>https://orgfarm-228d4c6259-dev-ed.develop.lightning.force.com/lightning/page/home</pre>
+                                </div>
+                                <p>becomes this:</p>
+                                <div class="code-block">
+                                    <pre>https://orgfarm-228d4c6259-dev-ed.develop.lightning.force.com/packaging/installPackage.apexp?p0=04tWx0000001taLIAQ</pre>
                                 </div>
                             </li>
                             <li>Install for <strong>All Users</strong> and Click <strong>Install</strong>. Select the checkbox to grant access to third-party websites, and click <strong>Continue</strong>.</li>
@@ -161,7 +169,7 @@
                         
                         <div class="image-placeholder">
                             <img src="images/pic-prework-step2.jpg" alt="Install base package" class="instruction-image">
-                            <p class="image-caption">Figure: Install Coral Cloud base package</p>
+                            
                         </div>
                     </div>
                 </details>
@@ -197,7 +205,7 @@
                         
                         <div class="image-placeholder">
                             <img src="images/pic-prework-step3.jpg" alt="Install Experience Cloud package" class="instruction-image">
-                            <p class="image-caption">Figure: Install Experience Cloud site package</p>
+                            
                         </div>
                     </div>
                 </details>
@@ -227,7 +235,7 @@
                         
                         <div class="image-placeholder">
                             <img src="images/pic-prework-step4.jpg" alt="Enable Einstein" class="instruction-image">
-                            <p class="image-caption">Figure: Turn on Einstein in Setup</p>
+                            
                         </div>
                     </div>
                 </details>
@@ -266,7 +274,7 @@
                         
                         <div class="image-placeholder">
                             <img src="images/pic-prework-step5.jpg" alt="Enable Agentforce" class="instruction-image">
-                            <p class="image-caption">Figure: Turn on Agentforce in Agent Studio</p>
+                            
                         </div>
                     </div>
                 </details>
@@ -297,7 +305,7 @@
                         
                         <div class="image-placeholder">
                             <img src="images/pic-setup-step1.jpg" alt="STORM: Request an Org screenshot" class="instruction-image">
-                            <p class="image-caption">Figure: STORM Request an Org - Select The Simple Demo Org (SDO) template</p>
+                            
                         </div>
                     </div>
                 </details>
@@ -321,7 +329,7 @@
                         
                         <div class="image-placeholder">
                             <img src="images/pic-setup-step2.jpg" alt="Enable Generative AI screenshot" class="instruction-image">
-                            <p class="image-caption">Figure: Enable Generative AI in Setup</p>
+                            
                         </div>
                     </div>
                 </details>
@@ -357,7 +365,7 @@
                         
                         <div class="image-placeholder">
                             <img src="images/pic-ex1-step1.jpg" alt="Agentforce Setup screenshot" class="instruction-image">
-                            <p class="image-caption">Figure: Enable Agentforce and open Agent Builder</p>
+                            
                         </div>
                     </div>
                 </details>
@@ -427,7 +435,7 @@
                         
                         <div class="image-placeholder">
                             <img src="images/pic-ex1-step2.jpg" alt="Create Custom Topic screenshot" class="instruction-image">
-                            <p class="image-caption">Figure: Configure Custom Topic in Agent Builder</p>
+                            
                         </div>
                     </div>
                 </details>
@@ -510,7 +518,7 @@
                         
                         <div class="image-placeholder">
                             <img src="images/pic-ex2-step1.jpg" alt="Flow Builder screenshot" class="instruction-image">
-                            <p class="image-caption">Figure: Autolaunched Flow configuration for Case Creation</p>
+                            
                         </div>
                     </div>
                 </details>
@@ -575,7 +583,7 @@
                         
                         <div class="image-placeholder">
                             <img src="images/pic-ex2-step2.jpg" alt="Agent Action configuration screenshot" class="instruction-image">
-                            <p class="image-caption">Figure: Create Agent Action for Flow</p>
+                            
                         </div>
                     </div>
                 </details>
@@ -609,7 +617,7 @@
                         
                         <div class="image-placeholder">
                             <img src="images/pic-ex3-step1.jpg" alt="Prompt Builder screenshot" class="instruction-image">
-                            <p class="image-caption">Figure: Configure Account Summary Prompt Template</p>
+                            
                         </div>
                     </div>
                 </details>
@@ -633,7 +641,7 @@
                         
                         <div class="image-placeholder">
                             <img src="images/pic-ex3-step2.jpg" alt="Prompt Action configuration screenshot" class="instruction-image">
-                            <p class="image-caption">Figure: Create Agent Action for Prompt Template</p>
+                            
                         </div>
                     </div>
                 </details>
@@ -667,7 +675,7 @@
                         
                         <div class="image-placeholder">
                             <img src="images/pic-ex4-step1.jpg" alt="Apex Class screenshot" class="instruction-image">
-                            <p class="image-caption">Figure: ContactLookup Apex Class</p>
+                            
                         </div>
                     </div>
                 </details>
@@ -691,7 +699,7 @@
                         
                         <div class="image-placeholder">
                             <img src="images/pic-ex4-step2.jpg" alt="Apex Action configuration screenshot" class="instruction-image">
-                            <p class="image-caption">Figure: Create Agent Action for Apex</p>
+                            
                         </div>
                     </div>
                 </details>
@@ -725,7 +733,7 @@
                         
                         <div class="image-placeholder">
                             <img src="images/pic-ex5-step1.jpg" alt="Create new Agentforce screenshot" class="instruction-image">
-                            <p class="image-caption">Figure: Create new Agentforce Service Agent</p>
+                            
                         </div>
                     </div>
                 </details>
@@ -749,7 +757,7 @@
                         
                         <div class="image-placeholder">
                             <img src="images/pic-ex5-step2.jpg" alt="Case Management Topic screenshot" class="instruction-image">
-                            <p class="image-caption">Figure: Configure Case Management Topic</p>
+                            
                         </div>
                     </div>
                 </details>
@@ -773,7 +781,7 @@
                         
                         <div class="image-placeholder">
                             <img src="images/pic-ex5-step3.jpg" alt="Account Management Topic screenshot" class="instruction-image">
-                            <p class="image-caption">Figure: Configure Account Management Topic</p>
+                            
                         </div>
                     </div>
                 </details>
@@ -811,7 +819,7 @@
                         
                         <div class="image-placeholder">
                             <img src="images/pic-ex6-step1.jpg" alt="Knowledge AQWK screenshot" class="instruction-image">
-                            <p class="image-caption">Figure: Configure Answer Questions with Knowledge action</p>
+                            
                         </div>
                     </div>
                 </details>
@@ -851,7 +859,7 @@
                         
                         <div class="image-placeholder">
                             <img src="images/pic-ex7-step1.jpg" alt="Omni-Channel Flow screenshot" class="instruction-image">
-                            <p class="image-caption">Figure: Outbound Omni-Channel Flow for Escalation</p>
+                            
                         </div>
                     </div>
                 </details>
@@ -879,7 +887,7 @@
                         
                         <div class="image-placeholder">
                             <img src="images/pic-ex7-step2.jpg" alt="Attach Flow screenshot" class="instruction-image">
-                            <p class="image-caption">Figure: Attach Escalation Flow to Agentforce</p>
+                            
                         </div>
                     </div>
                 </details>
@@ -916,7 +924,7 @@
                         
                         <div class="image-placeholder">
                             <img src="images/pic-ex8-step1.jpg" alt="Inbound Flow screenshot" class="instruction-image">
-                            <p class="image-caption">Figure: Inbound Omni-Channel Flow</p>
+                            
                         </div>
                     </div>
                 </details>
@@ -945,7 +953,7 @@
                         
                         <div class="image-placeholder">
                             <img src="images/pic-ex8-step2.jpg" alt="MIAW Channel screenshot" class="instruction-image">
-                            <p class="image-caption">Figure: Create MIAW Messaging Channel</p>
+                            
                         </div>
                     </div>
                 </details>
@@ -975,7 +983,7 @@
                         
                         <div class="image-placeholder">
                             <img src="images/pic-ex8-step3.jpg" alt="Embedded Service screenshot" class="instruction-image">
-                            <p class="image-caption">Figure: Create Embedded Service Deployment</p>
+                            
                         </div>
                     </div>
                 </details>
@@ -1006,7 +1014,7 @@
                         
                         <div class="image-placeholder">
                             <img src="images/pic-ex8-step4.jpg" alt="Experience Site screenshot" class="instruction-image">
-                            <p class="image-caption">Figure: Add MIAW to Experience Cloud Site</p>
+                            
                         </div>
                     </div>
                 </details>

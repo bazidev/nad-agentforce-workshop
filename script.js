@@ -16,6 +16,7 @@ function toggleSidebar() {
     
     sidebar.classList.toggle('hidden');
     contentWrapper.classList.toggle('sidebar-hidden');
+    toggleButton.classList.toggle('sidebar-hidden');
     
     // Save state to localStorage
     const isHidden = sidebar.classList.contains('hidden');
@@ -36,6 +37,7 @@ function loadSidebarState() {
     if (sidebarHidden) {
         sidebar.classList.add('hidden');
         contentWrapper.classList.add('sidebar-hidden');
+        toggleButton.classList.add('sidebar-hidden');
         toggleButton.setAttribute('aria-expanded', 'false');
         toggleButton.setAttribute('aria-label', 'Show sidebar');
     }
@@ -89,6 +91,19 @@ function updateProgress() {
     
     // Update sidebar nav items to show section completion
     updateSectionCompletion();
+    
+    // Show congratulations if 100% complete
+    if (percentage === 100 && !sessionStorage.getItem('congratsShown')) {
+        setTimeout(() => {
+            showCongratulations();
+            sessionStorage.setItem('congratsShown', 'true');
+        }, 500);
+    }
+    
+    // Reset congrats flag if not 100%
+    if (percentage < 100) {
+        sessionStorage.removeItem('congratsShown');
+    }
 }
 
 // Update section completion indicators in sidebar
@@ -292,6 +307,59 @@ function clearProgress() {
         });
         updateProgress();
     }
+}
+
+// Show congratulations modal when 100% complete
+function showCongratulations() {
+    // Create overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'congrats-overlay';
+    
+    // Create modal
+    const modal = document.createElement('div');
+    modal.className = 'congrats-modal';
+    modal.innerHTML = `
+        <div class="emoji">🎉</div>
+        <h2>Congratulations!</h2>
+        <p>You've successfully completed the <span class="highlight">Agentforce Workshop</span>!<br>
+        You're now ready to build autonomous AI agents with Salesforce.</p>
+    `;
+    
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+    
+    // Trigger confetti effect (if canvas-confetti library is available)
+    if (typeof confetti !== 'undefined') {
+        confetti({
+            particleCount: 250,
+            spread: 120,
+            origin: { y: 0.6 }
+        });
+        
+        setTimeout(() => {
+            confetti({
+                particleCount: 100,
+                spread: 150,
+                origin: { y: 0.6 }
+            });
+        }, 300);
+    }
+    
+    // Auto-remove after 4 seconds
+    setTimeout(() => {
+        overlay.style.animation = 'fadeOut 0.5s ease forwards';
+        setTimeout(() => {
+            overlay.remove();
+        }, 500);
+    }, 4000);
+    
+    // Click to dismiss
+    overlay.addEventListener('click', () => {
+        overlay.style.animation = 'fadeOut 0.5s ease forwards';
+        setTimeout(() => {
+            overlay.remove();
+        }, 500);
+    });
 }
 
 // Export progress (utility function)
