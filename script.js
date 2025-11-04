@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setupActiveNavigation();
     animateSteps();
     loadSidebarState();
+    addCopyButtonsToCodeBlocks();
 });
 
 // Toggle sidebar visibility
@@ -159,6 +160,8 @@ function loadCompletionState() {
             const step = document.querySelector(`[data-step="${stepId}"]`);
             if (step) {
                 step.classList.add('completed');
+                // Keep completed steps collapsed
+                step.removeAttribute('open');
             }
         });
         updateProgress();
@@ -183,6 +186,31 @@ function copyValue(button, text) {
         }, 2000);
     }).catch(err => {
         console.error('Failed to copy:', err);
+    });
+}
+
+// Add copy buttons to all code blocks
+function addCopyButtonsToCodeBlocks() {
+    const codeBlocks = document.querySelectorAll('.code-block');
+    codeBlocks.forEach(block => {
+        // Skip if button already exists
+        if (block.querySelector('.code-copy-btn')) return;
+        
+        const button = document.createElement('button');
+        button.className = 'code-copy-btn';
+        button.innerHTML = `
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" stroke="currentColor" stroke-width="2"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="2"/>
+            </svg>
+        `;
+        
+        button.addEventListener('click', function() {
+            const code = block.querySelector('pre').textContent;
+            copyValue(button, code);
+        });
+        
+        block.appendChild(button);
     });
 }
 

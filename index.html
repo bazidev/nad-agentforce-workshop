@@ -38,11 +38,10 @@
             </div>
         </div>
         
-        <nav class="sidebar-nav" id="sidebarNav">
-            <a href="#overview" class="nav-section-title">Overview</a>
-            <a href="#prework" data-section="prework">Pre-Work</a>
-            <a href="#setup" data-section="setup">Environment Setup</a>
-            <a href="#ex1" data-section="ex1">1. Assistive Agent</a>
+            <nav class="sidebar-nav" id="sidebarNav">
+                <a href="#overview" class="nav-section-title">Overview</a>
+                <a href="#prework" data-section="prework">Pre-Work & Setup</a>
+                <a href="#ex1" data-section="ex1">Explore the Employee Agent</a>
             <a href="#ex2" data-section="ex2">2. Custom Action - Flow</a>
             <a href="#ex4" data-section="ex4">3. Custom Action - Apex</a>
             <a href="#ex3" data-section="ex3">4. Custom Action - Prompt</a>
@@ -142,10 +141,9 @@
                         </div>
                     </summary>
                     <div class="step-content">
-                        <p><strong>Install and set up the Coral Cloud base package</strong></p>
-                        
+                        <p><strong>Install the Coral Cloud base package</strong></p>
                         <ol>
-                            <li>Once logged in into your org, replace the URL segment that comes after <a class="link">"lightning.force.com"</lightning.force.com></a> with:
+                            <li>Once logged in into your org, replace the URL segment that comes after <code>lightning.force.com</code> with:
                                 <div class="code-block">
                                     <pre>/packaging/installPackage.apexp?p0=04tWx0000001taLIAQ</pre>
                                 </div>
@@ -158,18 +156,13 @@
                                     <pre>https://orgfarm-228d4c6259-dev-ed.develop.lightning.force.com/packaging/installPackage.apexp?p0=04tWx0000001taLIAQ</pre>
                                 </div>
                             </li>
-                            <li>Install for <strong>All Users</strong> and Click <strong>Install</strong>. Select the checkbox to grant access to third-party websites, and click <strong>Continue</strong>.</li>
-                            <li>Open <strong>Setup</strong>, Enter "permission" in quick find, then select <strong>Permission Sets</strong>.</li>
-                            <li>Click on the <strong>"Coral Cloud"</strong> permission set and Click <strong>Manage Assignments</strong>.</li>
-                            <li>Click <strong>Add Assignment</strong>. Select <strong>Admin User</strong>, then click <strong>Next</strong>.</li>
-                            <li>Click <strong>Assign</strong>.</li>
-                            <li>From App Launcher, open <strong>Sample Data Import</strong>. Click <strong>Import sample data</strong>.</li>
-                            <li>From App Launcher, open <strong>Coral Cloud Resorts</strong>.</li>
+                            <li>Install for <strong>All Users</strong> and Click <strong>Install</strong>.</li>
+                            <li>Select the checkbox to grant access to third-party websites, and click <strong>Continue</strong>.</li>
+                            <li>Wait for the installation to complete.</li>
                         </ol>
                         
                         <div class="image-placeholder">
                             <img src="images/pic-prework-step2.jpg" alt="Install base package" class="instruction-image">
-                            
                         </div>
                     </div>
                 </details>
@@ -179,9 +172,40 @@
                         <div class="step-header">
                             <div class="step-left">
                                 <span class="step-number">3</span>
-                                <span class="step-title">Install Experience Cloud Site Package</span>
+                                <span class="step-title">Configure Permissions & Import Sample Data</span>
                             </div>
                             <button class="status-button" onclick="toggleStep(event, 'prework-step3')">
+                                <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </summary>
+                    <div class="step-content">
+                        <p><strong>Set up permissions and import sample data</strong></p>
+                        <ol>
+                            <li>Open <strong>Setup</strong>, Enter "permission" in quick find, then select <strong>Permission Sets</strong>.</li>
+                            <li>Find the <strong>"Coral Cloud"</strong> permission set and Click <strong>Manage Assignments</strong>.</li>
+                            <li>Click <strong>Add Assignment</strong>. Select your <strong>Admin User</strong> (Mostly will have your trailhead name), then click <strong>Next</strong>.</li>
+                            <li>Click <strong>Assign</strong>.</li>
+                            <li>From App Launcher, open <strong>Sample Data Import</strong>. Click <strong>Import sample data</strong>.</li>
+                            <li>From App Launcher, open <strong>Coral Cloud Resorts</strong> to verify the data imported successfully.</li>
+                        </ol>
+                        
+                        <div class="image-placeholder">
+                            <img src="images/pic-prework-step3.jpg" alt="Configure permissions and import data" class="instruction-image">
+                        </div>
+                    </div>
+                </details>
+
+                <details class="step" data-step="prework-step4" open>
+                    <summary>
+                        <div class="step-header">
+                            <div class="step-left">
+                                <span class="step-number">4</span>
+                                <span class="step-title">Install Experience Cloud Site Package</span>
+                            </div>
+                            <button class="status-button" onclick="toggleStep(event, 'prework-step4')">
                                 <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
@@ -193,7 +217,7 @@
                         
                         <ol>
                             <li>Open the <strong>Setup Menu</strong> and click <strong>Setup</strong>.</li>
-                            <li>In the quick find, search for "digital" and click <strong>Settings</strong>.</li>
+                            <li>In the quick find, go to <strong>Digital Experiences -> Settings</strong>.</li>
                             <li>Select <strong>Enable ExperienceBundle Metadata API</strong> and click <strong>Save</strong>.</li>
                             <li>Replace the URL segment that comes after <code>lightning.force.com</code> with:
                                 <div class="code-block">
@@ -204,20 +228,19 @@
                         </ol>
                         
                         <div class="image-placeholder">
-                            <img src="images/pic-prework-step3.jpg" alt="Install Experience Cloud package" class="instruction-image">
-                            
+                            <img src="images/pic-prework-step4.jpg" alt="Install Experience Cloud package" class="instruction-image">
                         </div>
                     </div>
                 </details>
 
-                <details class="step" data-step="prework-step4" open>
+                <details class="step" data-step="prework-step5" open>
                     <summary>
                         <div class="step-header">
                             <div class="step-left">
-                                <span class="step-number">4</span>
-                                <span class="step-title">Enable Generative AI Features - Step 1: Enable Einstein</span>
+                                <span class="step-number">5</span>
+                                <span class="step-title">Enable Generative AI Features - Enable Einstein</span>
                             </div>
-                            <button class="status-button" onclick="toggleStep(event, 'prework-step4')">
+                            <button class="status-button" onclick="toggleStep(event, 'prework-step5')">
                                 <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
@@ -228,26 +251,25 @@
                         <p><strong>Enable Einstein for Generative AI capabilities</strong></p>
                         
                         <ol>
-                            <li>Open the <strong>Setup Menu</strong> and click <strong>Setup</strong>.</li>
-                            <li>In the Setup Quick Find, search for <strong>Generative AI</strong>, and select <strong>Einstein Setup</strong>.</li>
+                            <li>Open the <strong>Setup</strong> menu.
+                            <li>Search for <strong>Generative AI</strong>.</li>
                             <li>Click the <strong>Turn on Einstein</strong> toggle.</li>
                         </ol>
                         
                         <div class="image-placeholder">
-                            <img src="images/pic-prework-step4.jpg" alt="Enable Einstein" class="instruction-image">
-                            
+                            <img src="images/pic-prework-step5.jpg" alt="Enable Einstein" class="instruction-image">
                         </div>
                     </div>
                 </details>
 
-                <details class="step" data-step="prework-step5" open>
+                <details class="step" data-step="prework-step6" open>
                     <summary>
                         <div class="step-header">
                             <div class="step-left">
-                                <span class="step-number">5</span>
-                                <span class="step-title">Enable Generative AI Features - Step 2: Enable Agentforce</span>
+                                <span class="step-number">6</span>
+                                <span class="step-title">Enable Generative AI Features - Enable Agentforce</span>
                             </div>
-                            <button class="status-button" onclick="toggleStep(event, 'prework-step5')">
+                            <button class="status-button" onclick="toggleStep(event, 'prework-step6')">
                                 <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
@@ -258,88 +280,34 @@
                         <p><strong>Enable Agentforce to start building AI agents</strong></p>
                         
                         <ol>
-                            <li><strong>Refresh your browser tab</strong>.</li>
-                            <li>Open the <strong>Setup Menu</strong> and click <strong>Setup</strong>.</li>
+                            <li>Refresh your browser tab!</li>
+                            <li>Open the <strong>Setup Menu</strong>.</li>
                             <li>In the quick find, search for <strong>Agentforce</strong> and click <strong>Agentforce Agents</strong> (under Agent Studio). 
-                                <div class="hint">
-                                    <p>💡 If it is not available, continue to refresh the page until the cache has reset.</p>
+                                <div class="warning">
+                                    <p>⚠️ If it is not available, continue to refresh the page until the cache has reset.</p>
                                 </div>
                             </li>
                             <li>Turn on the <strong>Agentforce</strong> toggle.</li>
                         </ol>
                         
-                        <div class="hint">
+                        
+                        <div class="image-placeholder">
+                            <img src="images/pic-prework-step6.jpg" alt="Enable Agentforce" class="instruction-image">
+                        </div>
+                    </div>
+                </details>
+
+            <div class="success">
                             <p>✅ You're now ready to start the workshop! All required features are enabled.</p>
                         </div>
-                        
-                        <div class="image-placeholder">
-                            <img src="images/pic-prework-step5.jpg" alt="Enable Agentforce" class="instruction-image">
-                            
-                        </div>
-                    </div>
-                </details>
             </section>
-            
-            <hr>
 
-            <!-- Environment Setup Section -->
-            <section id="setup" data-section="setup">
-                <h2>🛠️ Environment Setup</h2>
-
-                <details class="step" data-step="setup-step1" open>
-                    <summary>
-                        <div class="step-header">
-                            <div class="step-left">
-                                <span class="step-number">1</span>
-                                <span class="step-title">Create Your SDO Org</span>
-                            </div>
-                            <button class="status-button" onclick="toggleStep(event, 'setup-step1')">
-                                <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </summary>
-                    <div class="step-content">
-                        <p>Use the STORM Slack App to create your Simple Demo Org (SDO). Select the template named The Simple Demo Org (SDO).</p>
-                        
-                        <div class="image-placeholder">
-                            <img src="images/pic-setup-step1.jpg" alt="STORM: Request an Org screenshot" class="instruction-image">
-                            
-                        </div>
-                    </div>
-                </details>
-
-                <details class="step" data-step="setup-step2" open>
-                    <summary>
-                        <div class="step-header">
-                            <div class="step-left">
-                                <span class="step-number">2</span>
-                                <span class="step-title">Enable Generative AI</span>
-                            </div>
-                            <button class="status-button" onclick="toggleStep(event, 'setup-step2')">
-                                <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </summary>
-                    <div class="step-content">
-                        <p>Navigate to Setup and search for Generative AI. Toggle on the Turn on Einstein setting to enable the necessary features. Refresh the page and ensure Agent Studio now appears in the Setup quick find menu.</p>
-                        
-                        <div class="image-placeholder">
-                            <img src="images/pic-setup-step2.jpg" alt="Enable Generative AI screenshot" class="instruction-image">
-                            
-                        </div>
-                    </div>
-                </details>
-            </section>
             
             <hr>
 
             <!-- Exercise 1 -->
             <section id="ex1" data-section="ex1">
-                <h2>1️⃣ Explore Agentforce Assistive (Copilot)</h2>
+                <h2>1️⃣ Explore Agentforce Employee Agent</h2>
 
                 <details class="step" data-step="ex1-step1" open>
                     <summary>
@@ -357,10 +325,10 @@
                     </summary>
                     <div class="step-content">
                         <ul>
-                            <li>In Setup, search for Agents and click Agents (under Agent Studio).</li>
+                            <li>In Setup, search for Agents and click <strong>Agentforce Agents</strong> (under Agent Studio).</li>
                             <li>Turn on the Agentforce toggle.</li>
-                            <li>Click Agentforce (Default).</li>
-                            <li>Click Open in Builder (upper right corner).</li>
+                            <li>Toggle <strong>Enable the Agentforce (Default) Agent</strong>.</li>
+                            <li>Click Open in Builder (bottom right corner).</li>
                         </ul>
                         
                         <div class="image-placeholder">
@@ -386,8 +354,9 @@
                     </summary>
                     <div class="step-content">
                         <ul>
-                            <li>First, remove any default topics by selecting Remove from Agent.</li>
                             <li>Click the arrow down icon next to "Manage the topics..." and select New Topic.</li>
+                            <li>Ignore the <strong>What do you want this topic to do? (Optional)</strong> step and click Next</li>
+                            <li>Use the following details for Topic</li>
                         </ul>
                         
                         <h4>Topic Configuration:</h4>
@@ -412,7 +381,7 @@
                                 </tr>
                                 <tr>
                                     <td>Classification Description</td>
-                                    <td>Engages and interacts with the user about any request related to the resort...</td>
+                                    <td>Engages and interacts with the user about any request related to the resort. This could be tasks such as identify and summarize records, answer queries, aggregate data, find and query objects, update records, or drafting and refining emails.</td>
                                     <td><button class="copy-btn" onclick="copyValue(this, 'Engages and interacts with the user about any request related to the resort. This could be tasks such as identify and summarize records, answer queries, aggregate data, find and query objects, update records, or drafting and refining emails.')">
                                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <rect x="9" y="9" width="13" height="13" rx="2" ry="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -422,8 +391,28 @@
                                 </tr>
                                 <tr>
                                     <td>Scope</td>
-                                    <td>Your role is to assist a Customer Service Representative...</td>
+                                    <td>Your role is to assist a Customer Service Representative in supporting guests with inquiries about reservations and experiences available at the hotel.</td>
                                     <td><button class="copy-btn" onclick="copyValue(this, 'Your role is to assist a Customer Service Representative in supporting guests with inquiries about reservations and experiences available at the hotel.')">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button></td>
+                                </tr>
+                                <tr>
+                                    <td>Instruction</td>
+                                    <td>Never ask the user for an ID. Instead, ask for a record that's relevant.</td>
+                                    <td><button class="copy-btn" onclick="copyValue(this, 'Never ask the user for an ID. Instead, ask for a record that\'s relevant.')">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button></td>
+                                </tr>
+                                <tr>
+                                    <td>Actions to select:</td>
+                                    <td>- Draft or Revise Email <br/>- Get Activities Timeline <br/>- Get Activity Details <br/>- Get Record Details <br/>- Identify Object by Name <br/>- Identify Record by Name </td>
+                                    <td><button class="copy-btn" onclick="copyValue(this, 'Draft or Revise Email, Get Activities Timeline, Get Activity Details, Get Record Details, Identify Object by Name, Identify Record by Name')">
                                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <rect x="9" y="9" width="13" height="13" rx="2" ry="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                             <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -432,23 +421,109 @@
                                 </tr>
                             </tbody>
                         </table>
-                        
+                        <ul>
+                            <li>Click Finish.</li>
+                            <li>Click <strong>Activate</strong> (upper right corner) to activate this agent.</li>
+                            <li>Click the back arrow button to leave Agent Builder and go back to Setup.</li>
+                        </ul>
                         <div class="image-placeholder">
                             <img src="images/pic-ex1-step2.jpg" alt="Create Custom Topic screenshot" class="instruction-image">
-                            
                         </div>
                     </div>
                 </details>
+
+                <details class="step" data-step="ex1-step3" open>
+                    <summary>
+                        <div class="step-header">
+                            <div class="step-left">
+                                <span class="step-number">3</span>
+                                <span class="step-title">Explore The Agent</span>
+                            </div>
+                            <button class="status-button" onclick="toggleStep(event, 'ex1-step3')">
+                                <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </summary>
+                    <div class="step-content">
+                        <p>In this step, you explore the Employee Agentforce inside Salesforce.</p>
+                        
+                        <h4>Open Agentforce Sidebar:</h4>
+                        <ol>
+                            <li>In the <strong>App Launcher</strong>, search and select the <strong>Coral Clouds Resorts</strong> app.</li>
+                            <li>Click on the <strong>Agentforce Icon</strong> in the upper right corner of the screen to open the Agentforce sidebar.</li>
+                        </ol>
+
+                        <h4>Test Agent Capabilities:</h4>
+                        
+                        <p><strong>1. Query Salesforce Data:</strong></p>
+                        <p>Enter the following prompt in the Agentforce sidebar:</p>
+                        <div class="code-block">
+                            <pre>Show me any high priority open cases</pre>
+                        </div>
+                        <div class="hint">
+                            <p>💡 Agents can query Salesforce data and use Salesforce metadata to present records using a rich user interface (record cards).</p>
+                        </div>
+
+                        <p><strong>2. Query Custom Data:</strong></p>
+                        <p>Enter the following prompt in the Agentforce sidebar:</p>
+                        <div class="code-block">
+                            <pre>List all the available experiences</pre>
+                        </div>
+
+                        <p><strong>3. Summarize Records:</strong></p>
+                        <div class="code-block">
+                            <pre>Can you summarize the first case for me?</pre>
+                        </div>
+                        <div class="hint">
+                            <p>💡 Agents can summarize records automatically.</p>
+                        </div>
+
+                        <p><strong>4. Context Understanding:</strong></p>
+                        <p>go to a specific contact record page, for example <strong>Sofia Rodriguez</strong></p>
+                        <div class="code-block">
+                            <pre>Can you give me an overview of the contact?</pre>
+                        </div>
+                        <div class="hint">
+                            <p>💡 Agents understand the context of the conversation. For example, they can figure out who the customer is from current record page.</p>
+                        </div>
+
+                        <p><strong>5. Aggregate Data:</strong></p>
+                        <div class="code-block">
+                            <pre>How many contacts do we have in the state of Minnesota?</pre>
+                        </div>
+                        <div class="hint">
+                            <p>💡 Agents have the ability to aggregate data across your Salesforce org.</p>
+                        </div>
+                        
+                        <div class="image-placeholder">
+                            <img src="images/pic-ex1-step3.jpg" alt="Test Agentforce capabilities" class="instruction-image">
+                        </div>
+                    </div>
+                </details>
+                        <div class="success">
+                            <p>✅ Now you are familiar with the Employee Agent, let's move to our main guest <strong>The Service Agent</strong>.</p>
+                        </div>
             </section>
             
             <hr>
 
+            <div class="hint">
+                    <h4>ℹ️ Coral Cloud Service Agent</h4>
+                    <br />
+                    <p>Now let'e create out main Agent <strong>the Coral Clouds Service Agent</strong>, but first we will build few components that are needed for the agent.</p>
+                    <p>We will create a Flow, an Apex and a Prompt Builder and all of them will be used by the Agent through custom actions</p>
+                    <p>First We are an Autolaunched Flow that handles Case Creation and links it to the MessagingSessionId.</p>
+                </div>
+
+                
             <!-- Exercise 2 -->
             <section id="ex2" data-section="ex2">
+                
                 <h2>2️⃣ Custom Action - Flow (Case Creation)</h2>
-                <div class="hint">
-                    <p>💡 We are creating a custom action powered by an Autolaunched Flow that handles Case Creation and links it to the MessagingSessionId.</p>
-                </div>
+                
+                
 
                 <details class="step" data-step="ex2-step1" open>
                     <summary>
@@ -465,7 +540,10 @@
                         </div>
                     </summary>
                     <div class="step-content">
-                        <p>The flow must be an Autolaunched Flow (No Trigger). Name it New Case for Contact.</p>
+                        <ul>
+                            <li>In the App Launcher, search for <strong>automation</strong> then create a new Flow.</li>
+                            <li>The flow must be an <strong>Autolaunched Flow (No Trigger)</strong>.</li>
+                        </ul>
 
                         <h4>a. Define Flow Variables (Resources)</h4>
                         <p>Create the following Variable resources. They must be marked Available for Input for the Agentforce to pass data into them.</p>

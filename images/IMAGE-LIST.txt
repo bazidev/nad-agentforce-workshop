@@ -7,19 +7,16 @@ PRE-WORK (ORG SETUP):
 ---------------------
 ✓ pic-prework-step1.jpg → Trailhead signup for Custom Data Cloud Playground
 ✓ pic-prework-step2.jpg → Install Coral Cloud base package
-✓ pic-prework-step3.jpg → Install Experience Cloud site package
-✓ pic-prework-step4.jpg → Enable Einstein in Setup
-✓ pic-prework-step5.jpg → Enable Agentforce in Agent Studio
+✓ pic-prework-step3.jpg → Configure permissions and import sample data
+✓ pic-prework-step4.jpg → Install Experience Cloud site package
+✓ pic-prework-step5.jpg → Enable Einstein in Setup
+✓ pic-prework-step6.jpg → Enable Agentforce in Agent Studio
 
-ENVIRONMENT SETUP:
-------------------
-✓ pic-setup-step1.jpg   → STORM: Request an Org (Select SDO template)
-✓ pic-setup-step2.jpg   → Enable Generative AI in Setup
-
-EXERCISE 1: ASSISTIVE AGENT:
-----------------------------
+EXERCISE 1: EMPLOYEE AGENT:
+---------------------------
 ✓ pic-ex1-step1.jpg     → Enable Agentforce and open Agent Builder
 ✓ pic-ex1-step2.jpg     → Create Custom Topic configuration
+✓ pic-ex1-step3.jpg     → Test standard agent actions in Service Console
 
 EXERCISE 2: FLOW (CASE CREATION):
 ---------------------------------
@@ -66,5 +63,5 @@ TIPS:
 • Crop to show only relevant UI elements
 • If an image is missing, a placeholder border will show
 
-Total Screenshots Needed: 25 (5 pre-work + 20 workshop)
+Total Screenshots Needed: 27 (6 pre-work + 21 workshop)
 
