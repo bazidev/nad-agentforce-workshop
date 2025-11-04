@@ -379,8 +379,8 @@ function showCongratulations() {
     modal.innerHTML = `
         <div class="emoji">🎉</div>
         <h2>Congratulations!</h2>
-        <p>You've successfully completed the <span class="highlight">Agentforce Workshop</span>!<br>
-        You're now ready to build autonomous AI agents with Salesforce.</p>
+        <p>You've successfully completed the <span class="highlight">Agentforce Workshop Pre-Work</span>!<br>
+        You're now ready to build autonomous AI agents during the workshop.</p>
     `;
     
     overlay.appendChild(modal);
