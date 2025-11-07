@@ -50,6 +50,7 @@
             <a href="#ex5" data-section="ex5">5. Custom Action - Apex</a>
             <a href="#ex7" data-section="ex7">6. Escalation</a>
             <a href="#ex8" data-section="ex8">7. Publishing the Agent</a>
+            <a href="#ex9" data-section="ex9">8. Testing</a>
         </nav>
     </div>
 
@@ -112,13 +113,20 @@
                         
                         <ol>
                             <li>On Trailhead go to the <a class="link" target="_blank" href="https://trailhead.salesforce.com/content/learn/projects/quick-start-explore-the-coral-cloud-sample-app/deploy-the-coral-cloud-sample-app">Quick Start: Explore the Coral Cloud Sample App</a> badge, and get a new <strong>Custom Data Cloud Playground org</strong>.</li>
+                            <li>Login then go to the <strong>This Badge Requires a New Custom Data Cloud Playground</strong> and click <strong>Create Playground</strong></li>
                             <li>Make sure that you <strong>write down your user ID and password</strong>. You'll need them again later in this workshop.</li>
                             <li>Also make sure to <strong>connect your custom playground in Trailhead</strong>. After this workshop you can use the org to verify the badge.</li>
                             <li>In your browser, go to <a class="link" target="_blank" href="https://login.salesforce.com">login.salesforce.com</a> and log in to your org.</li>
                         </ol>
+
+                        <div class="warning">
+                            <p><strong>⚠️ IMPORTANT: </strong>
+                            <p>Recently we have seen some issues in the newly created orgs, please make sure the org has Knowledge Articles and Account records.</strong></p>
+                            <p>If one of these is missing consider creating another org quickly to avoid missing some parts of the agent!</p>
+                        </div>
                         
                         <div class="warning">
-                            <p>⚠️  Keep your credentials safe! You'll need them throughout the workshop.</p>
+                            <p>⚠️  Make sure to save and keep your credentials safe! You'll need them throughout the workshop.</p>
                         </div>
                         
                         <div class="image-placeholder">
@@ -1209,7 +1217,7 @@
                                 </tr>
                                 <tr>
                                     <td>A case is a record used to help track a customer's issues. Customers may have questions about the status of the issue or want to provide more information for the case. Cases are usually associated with a contact. Comments are added to provide new information.</td>
-                                    <td><button class="copy-btn" onclick="copyValue(this, 'A case is a record used to help track a customer&apos;s issues. Customers may have questions about the status of the issue or want to provide more information for the case. Cases are usually associated with a contact. Comments are added to provide new information.')">
+                                    <td><button class="copy-btn" onclick="copyValue(this, 'A case is a record used to help track a customer\'s issues. Customers may have questions about the status of the issue or want to provide more information for the case. Cases are usually associated with a contact. Comments are added to provide new information.')">
                                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <rect x="9" y="9" width="13" height="13" rx="2" ry="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                             <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1360,8 +1368,13 @@
                         </div>
 
                         <div class="hint">
-                            <p>💡 The agent should ask for your email and case details. When prompted for email, use: <strong>sofiarodriguez@example.com</strong></p>
-                            <p>The agent will then create a new case using the flow action you created.</p>
+                            <p>💡 The agent should ask for your email and case details. When prompted for email, use:</p>
+                        </div>
+                        <div class="code-block">
+                            <pre>sofiarodriguez@example.com</pre>
+                        </div>
+                        <div class="hint">
+                            <p>💡 The agent will then create a new case using the flow action you created.</p>
                         </div>
                         <div class="warning">
                             <p>⚠️ First verify the agent reasoning and then make sure the case is created in Salesforce.</p>
@@ -1693,7 +1706,10 @@ When generating the HTML, you must use semantic elements whenever possible:
                         </div>
 
                         <div class="hint">
-                            <p>💡 When the agent asks for your email, use: <strong>sofiarodriguez@example.com</strong></p>
+                            <p>💡 When the agent asks for your email, use:</p>
+                        </div>
+                        <div class="code-block">
+                            <pre>sofiarodriguez@example.com</pre>
                         </div>
 
                         <div class="warning">
@@ -1750,14 +1766,14 @@ When generating the HTML, you must use semantic elements whenever possible:
 public class ContactLookup {
     
     public class Input {
-        @InvocableVariable(required=true)
+        @InvocableVariable(required=true,  label = 'Email Address', description = 'The email address of the contact to search for.')
         public String emailAddress;
     }
     
     public class Output {
-        @InvocableVariable
+        @InvocableVariable(label = 'Full Name', description = 'The full name of the matching contact associated with the provided email address.')
         public String fullName;
-        @InvocableVariable
+        @InvocableVariable(label = 'Account Id', description = 'The Account Id related to the found record.')
         public Id accountId;
     }
     
@@ -1986,8 +2002,13 @@ public class ContactLookup {
                         </div>
 
                         <div class="hint">
-                            <p>💡 The agent will ask for your email. Use: <strong>sofiarodriguez@example.com</strong></p>
-                            <p>This time, the agent should successfully identify your email, retrieve your contact record using the Apex action, and then provide a complete account summary using the Prompt Template action.</p>
+                            <p>💡 The agent will ask for your email. Use:</p>
+                        </div>
+                        <div class="code-block">
+                            <pre>sofiarodriguez@example.com</pre>
+                        </div>
+                        <div class="hint">
+                            <p>💡 This time, the agent should successfully identify your email, retrieve your contact record using the Apex action, and then provide a complete account summary using the Prompt Template action.</p>
                         </div>
 
                         <div class="warning">
@@ -2007,7 +2028,8 @@ public class ContactLookup {
             <section id="ex7" data-section="ex7">
                 <h2>6️⃣ Escalation (Human Handoff)</h2>
                 <div class="hint">
-                    <p>💡 Escalation is achieved by triggering an outbound Omni-Channel Flow configured to route the conversation to a human agent queue.</p>
+                    <p>💡 <strong>Escalation</strong> is a standard hidden action used when referencing the escalation process in a custom topic instruction. Agentforce will trigger the outbound Omni-Channel flow, which must be pre-configured and linked to Agentforce in the settings.</p>
+                    <p>In this use case, we will be using the Escalation standard topic.</p>
                 </div>
 
                 <details class="step" data-step="ex7-step1" open>
@@ -2015,7 +2037,7 @@ public class ContactLookup {
                         <div class="step-header">
                             <div class="step-left">
                                 <span class="step-number">1</span>
-                                <span class="step-title">Create Outbound Omni-Channel Flow</span>
+                                <span class="step-title">Create an Outbound Omni-Channel Flow</span>
                             </div>
                             <button class="status-button" onclick="toggleStep(event, 'ex7-step1')">
                                 <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2025,17 +2047,40 @@ public class ContactLookup {
                         </div>
                     </summary>
                     <div class="step-content">
+                        <p>Create an Outbound Omni-channel flow that will route the conversation to a human agent in case of escalation.</p>
+                        <p>⚠️ <strong>Make sure that Omni-channel is Enabled</strong></p>
                         <ul>
-                            <li>Create a new Omni-Channel Flow in Flow Builder.</li>
-                            <li>Name: <strong>Agentforce - Route to Human Agents</strong></li>
-                            <li>Add a Variable named <code>recordId</code> (Data Type: Text, Available for Input: Checked).</li>
-                            <li>Configure a Route Work element to route the conversation</li>
-                            <li>Save and Activate the flow.</li>
+                            <li>From <strong>Setup → Flows → New Flow → Start From Scratch → Next → Omni-channel Flow → Create</strong></li>
+                            <li><strong>Name:</strong> Agentforce - Route to Human Agents</li>
+                            <li><strong>Description:</strong> This outbound omni-channel flow will be used to route conversations to human agents.</li>
                         </ul>
+                        
+                        <p><strong>Add the following variable:</strong></p>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Resource Type</th>
+                                    <th>API Name</th>
+                                    <th>Description</th>
+                                    <th>Data Type</th>
+                                    <th>Available for input</th>
+                                    <th>Available for output</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Variable</td>
+                                    <td><code>recordId</code></td>
+                                    <td>The messaging record Id</td>
+                                    <td>Text</td>
+                                    <td>✅</td>
+                                    <td>❌</td>
+                                </tr>
+                            </tbody>
+                        </table>
                         
                         <div class="image-placeholder">
                             <img src="images/pic-ex7-step1.jpg" alt="Omni-Channel Flow screenshot" class="instruction-image">
-                            
                         </div>
                     </div>
                 </details>
@@ -2045,7 +2090,7 @@ public class ContactLookup {
                         <div class="step-header">
                             <div class="step-left">
                                 <span class="step-number">2</span>
-                                <span class="step-title">Attach Flow to Agentforce</span>
+                                <span class="step-title">Attach this flow to the Agentforce</span>
                             </div>
                             <button class="status-button" onclick="toggleStep(event, 'ex7-step2')">
                                 <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2056,14 +2101,80 @@ public class ContactLookup {
                     </summary>
                     <div class="step-content">
                         <ul>
-                            <li>Go to Setup > Coral Clouds Service Agent > Connections tab.</li>
-                            <li>Under Outbound Omni-Channel Flow, select the flow you just created: <strong>Agentforce - Route to Human Agents</strong></li>
-                            <li>This links the Agent's standard escalation topic (which is hidden) to your human handoff flow.</li>
+                            <li>Go to <strong>Setup > Coral Clouds Service Agent > Connections</strong> tab</li>
+                            <li>Under <strong>Outbound Omni-Channel Flow</strong>, select the flow you just created: <strong>Agentforce - Route to Human Agents</strong></li>
+                            <li>This links the Agent's standard escalation topic (which is hidden) to your human handoff flow</li>
+                        </ul>
+                        <div class="image-placeholder">
+                            <img src="images/pic-ex7-step2.jpg" alt="Attach Flow screenshot" class="instruction-image">
+                        </div>
+                    </div>
+                </details>
+
+                <details class="step" data-step="ex7-step3" open>
+                    <summary>
+                        <div class="step-header">
+                            <div class="step-left">
+                                <span class="step-number">3</span>
+                                <span class="step-title">Add Escalation Topic</span>
+                            </div>
+                            <button class="status-button" onclick="toggleStep(event, 'ex7-step3')">
+                                <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </summary>
+                    <div class="step-content">
+                        <ul>
+                            <li>Go to <strong>Setup > Coral Clouds Service Agent > Topics</strong></li>
+                            <li>Click <strong>Add Topics</strong></li>
+                            <li>From the Asset Library, search for and add the <strong>Escalation</strong> topic</li>
+                            <li>This standard topic enables the agent to recognize escalation requests</li>
                         </ul>
                         
                         <div class="image-placeholder">
-                            <img src="images/pic-ex7-step2.jpg" alt="Attach Flow screenshot" class="instruction-image">
-                            
+                            <img src="images/pic-ex7-step3.jpg" alt="Add Escalation Topic screenshot" class="instruction-image">
+                        </div>
+                    </div>
+                </details>
+
+                <details class="step" data-step="ex7-step4" open>
+                    <summary>
+                        <div class="step-header">
+                            <div class="step-left">
+                                <span class="step-number">4</span>
+                                <span class="step-title">Test the Escalation Flow</span>
+                            </div>
+                            <button class="status-button" onclick="toggleStep(event, 'ex7-step4')">
+                                <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </summary>
+                    <div class="step-content">
+                        <ul>
+                            <li>Open the <strong>Agent Builder</strong> for Coral Clouds Service Agent</li>
+                            <li>In the test panel, type one of these prompts:</li>
+                        </ul>
+                        
+                        <p><strong>Example Prompt 1:</strong></p>
+                        <div class="code-block">
+                            <pre>I need to speak with a human agent</pre>
+                        </div>
+                        
+                        <p><strong>Example Prompt 2:</strong></p>
+                        <div class="code-block">
+                            <pre>Escalate me</pre>
+                        </div>
+                        
+                        <ul>
+                            <li>Check the <strong>Reasoning Engine</strong> output to verify that the agent picked <strong>Escalation</strong> as the topic</li>
+                        </ul>
+                        
+                        <div class="hint">
+                            <p>ℹ️ <strong>Note:</strong> The actual escalation to an Omni-channel agent won't occur in the Agent Builder because it cannot establish a real Omni-channel connection. However, seeing the Escalation topic selected in the reasoning engine confirms that the agent is correctly identifying the escalation request and attempting to trigger the outbound flow.</p>
                         </div>
                     </div>
                 </details>
@@ -2073,7 +2184,10 @@ public class ContactLookup {
 
             <!-- Exercise 8 -->
             <section id="ex8" data-section="ex8">
-                <h2>7️⃣ Publish the Agentforce</h2>
+                <h2>7️⃣ Publish the Agent in Experience Site</h2>
+                <div class="hint">
+                    <p>💡 In this exercise, we will expose our Agentforce service agent on an Experience Cloud site.</p>
+                </div>
 
                 <details class="step" data-step="ex8-step1" open>
                     <summary>
@@ -2090,17 +2204,16 @@ public class ContactLookup {
                         </div>
                     </summary>
                     <div class="step-content">
-                        <p>This flow is used to route incoming messages to your Agentforce Service Agent.</p>
+                        <p>Create an Inbound omni-channel flow that will be used to route the conversations to our Agentforce Service Agent.</p>
                         <ul>
-                            <li>Create a new Omni-Channel Flow (if you didn't create it in the pre-work).</li>
-                            <li>Name: <strong>Agentforce - Route to Coral Clouds Agentforce</strong></li>
-                            <li>Configure a Route Work element to route to the Coral Clouds Service Agent, using the Messaging Fallback Queue.</li>
-                            <li>Save and Activate the flow.</li>
+                            <li>From <strong>Setup → Flows → New Flow → Start From Scratch → Next → Omni-channel Flow → Create</strong></li>
+                            <li><strong>Name:</strong> Agentforce - Route to Coral Clouds Service Agent</li>
+                            <li>Configure a Route Work element to route to the <strong>Coral Clouds Service Agent</strong></li>
+                            <li>Save and Activate the flow</li>
                         </ul>
                         
                         <div class="image-placeholder">
                             <img src="images/pic-ex8-step1.jpg" alt="Inbound Flow screenshot" class="instruction-image">
-                            
                         </div>
                     </div>
                 </details>
@@ -2110,7 +2223,7 @@ public class ContactLookup {
                         <div class="step-header">
                             <div class="step-left">
                                 <span class="step-number">2</span>
-                                <span class="step-title">Create Messaging Channel (MIAW)</span>
+                                <span class="step-title">Create New Messaging Settings</span>
                             </div>
                             <button class="status-button" onclick="toggleStep(event, 'ex8-step2')">
                                 <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2121,15 +2234,15 @@ public class ContactLookup {
                     </summary>
                     <div class="step-content">
                         <ul>
-                            <li>Go to Setup > Feature Settings > Service > Messaging > Messaging Settings.</li>
-                            <li>Click New Channel and choose MIAW (Messaging for In-App and Web).</li>
-                            <li>Name the channel: <strong>Coral Clouds Messaging - MIAW</strong></li>
-                            <li>Save and Activate the channel.</li>
+                            <li>Go to <strong>Setup > Feature Settings > Service > Messaging > Messaging Settings</strong></li>
+                            <li>Choose <strong>MIAW</strong> and use the name: <strong>Coral Clouds Messaging - MIAW</strong></li>
+                            <li>Assign the new inbound omni-channel flow in the messaging setting: <strong>Agentforce - Route to Coral Clouds Service Agent</strong></li>
+                            <li>Use the fallback queue</li>
+                            <li>Click <strong>Activate</strong></li>
                         </ul>
                         
                         <div class="image-placeholder">
                             <img src="images/pic-ex8-step2.jpg" alt="MIAW Channel screenshot" class="instruction-image">
-                            
                         </div>
                     </div>
                 </details>
@@ -2139,7 +2252,7 @@ public class ContactLookup {
                         <div class="step-header">
                             <div class="step-left">
                                 <span class="step-number">3</span>
-                                <span class="step-title">Create Embedded Service Deployment</span>
+                                <span class="step-title">Create New Embedded Service Deployment</span>
                             </div>
                             <button class="status-button" onclick="toggleStep(event, 'ex8-step3')">
                                 <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2149,17 +2262,28 @@ public class ContactLookup {
                         </div>
                     </summary>
                     <div class="step-content">
+                        <p><strong>Get the Experience site domain:</strong></p>
                         <ul>
-                            <li>From Setup > Feature Settings > Service > Embedded Service > Embedded Service Deployments.</li>
-                            <li>Choose MIAW > WEB.</li>
-                            <li>Name: <strong>Coral Clouds Agentforce</strong></li>
-                            <li>Select your Domain (from your Experience Site) and the Messaging Channel: <strong>Coral Clouds Messaging - MIAW</strong></li>
-                            <li>Save and Publish the deployment.</li>
+                            <li>Example format: <code>curious-otter-12345-dev-ed.trailblaze.my.salesforce-sites.com</code></li>
                         </ul>
                         
                         <div class="image-placeholder">
-                            <img src="images/pic-ex8-step3.jpg" alt="Embedded Service screenshot" class="instruction-image">
-                            
+                            <img src="images/pic-ex8-step3-1.jpg" alt="Experience Site Domain screenshot" class="instruction-image">
+                        </div>
+                        
+                        <p><strong>Create the Embedded Service Deployment:</strong></p>
+                        <ul>
+                            <li>From <strong>Setup > Feature Settings > Service > Embedded Service > Embedded Service Deployments</strong></li>
+                            <li>Choose: <strong>MIAW > WEB</strong></li>
+                            <li><strong>Name:</strong> Coral Clouds Agentforce</li>
+                            <li><strong>API Name:</strong> leave default</li>
+                            <li><strong>Domain:</strong> Enter your Experience site domain (e.g., curious-otter-12345-dev-ed.trailblaze.my.salesforce-sites.com)</li>
+                            <li><strong>Messaging Channel:</strong> Coral Clouds Messaging - MIAW</li>
+                            <li>Click <strong>Publish</strong></li>
+                        </ul>
+                        
+                        <div class="image-placeholder">
+                            <img src="images/pic-ex8-step3-2.jpg" alt="Embedded Service Deployment screenshot" class="instruction-image">
                         </div>
                     </div>
                 </details>
@@ -2169,7 +2293,7 @@ public class ContactLookup {
                         <div class="step-header">
                             <div class="step-left">
                                 <span class="step-number">4</span>
-                                <span class="step-title">Add MIAW Channel to Experience Site</span>
+                                <span class="step-title">Test the Deployment</span>
                             </div>
                             <button class="status-button" onclick="toggleStep(event, 'ex8-step4')">
                                 <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2179,22 +2303,269 @@ public class ContactLookup {
                         </div>
                     </summary>
                     <div class="step-content">
+                        <p>After publishing, you can test the messaging functionality directly from the Embedded Service Deployments page:</p>
                         <ul>
-                            <li>Go to your Experience Site builder.</li>
-                            <li>Search for the Embedded Messaging component.</li>
-                            <li>Drag and Drop the component onto your page.</li>
-                            <li>In the properties panel, choose the Embedded Web Deployment: <strong>Coral Clouds Agentforce</strong></li>
-                            <li>Publish your Experience Site.</li>
-                            <li>Test your new autonomous Service Agent on the live Experience Cloud URL.</li>
+                            <li>From <strong>Setup</strong>, in the Quick Find box, enter <strong>Embedded Service Deployments</strong>, and then select <strong>Embedded Service Deployments</strong></li>
+                            <li>Click the downward arrow to the right of your deployment (<strong>Coral Clouds Agentforce</strong>), and then select <strong>View</strong></li>
+                            <li>On the <strong>Test Messaging</strong> card, click <strong>Test Messaging</strong></li>
+                            <li>Click to open the messaging conversation window and initiate a messaging session as a customer</li>
+                            <li>Test your Agentforce agent directly from here!</li>
                         </ul>
                         
-                        <div class="image-placeholder">
-                            <img src="images/pic-ex8-step4.jpg" alt="Experience Site screenshot" class="instruction-image">
-                            
+                        <div class="hint">
+                            <p>💡 <strong>Note:</strong> You may need to refresh the page or wait for an email confirmation after publishing. If the Test Messaging option is not immediately available, wait a moment and refresh the page.</p>
                         </div>
                     </div>
                 </details>
+
+                <details class="step" data-step="ex8-step5" open>
+                    <summary>
+                        <div class="step-header">
+                            <div class="step-left">
+                                <span class="step-number">5</span>
+                                <span class="step-title">Add the MIAW Channel on the Experience Site</span>
+                            </div>
+                            <button class="status-button" onclick="toggleStep(event, 'ex8-step5')">
+                                <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </summary>
+                    <div class="step-content">
+                        <p class="warning">⚠️ <strong>Important:</strong> Make sure to use the same Experience Site whose domain you used in the Embedded Service Deployment settings in Step 3!</p>
+                        
+                        <ul>
+                            <li>Go to your <strong>Experience Site builder</strong> (the same site you used for the deployment domain)</li>
+                            <li>Search for <strong>Embedded Messaging</strong> component</li>
+                            <li>Drag and drop the component onto your page</li>
+                            <li>Choose the <strong>Coral Clouds Agentforce</strong> Embedded Web Deployment</li>
+                            <li>Click <strong>Publish</strong></li>
+                        </ul>
+                        
+                        <div class="image-placeholder">
+                            <img src="images/pic-ex8-step5.jpg" alt="Experience Site screenshot" class="instruction-image">
+                        </div>
+                    </div>
+                </details>
+
+                <details class="step" data-step="ex8-step6" open>
+                    <summary>
+                        <div class="step-header">
+                            <div class="step-left">
+                                <span class="step-number">6</span>
+                                <span class="step-title">Add User to Messaging Queue</span>
+                        </div>
+                            <button class="status-button" onclick="toggleStep(event, 'ex8-step6')">
+                                <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </summary>
+                    <div class="step-content">
+                        <p>To receive escalated conversations from the Agentforce agent, you need to configure your user as a member of the messaging queue.</p>
+                        
+                        <ul>
+                            <li>Go to <strong>Setup > Feature Settings > Service > Queues</strong> (or search for "Queues" in Quick Find)</li>
+                            <li>Find and click on the queue used in your messaging settings (e.g., <strong>Messaging</strong>)</li>
+                            <li>Scroll down to the <strong>Queue Members</strong> section</li>
+                            <li>Click <strong>Edit</strong></li>
+                            <li>Add your user from the <strong>Available Members</strong> list to the <strong>Selected Members</strong> list</li>
+                            <li>Click <strong>Save</strong></li>
+                        </ul>
+                    </div>
+                </details>
             </section>
+
+            <hr>
+
+            <!-- Exercise 9 -->
+            <section id="ex9" data-section="ex9">
+                <h2>8️⃣ Test the Agentforce in Experience Site</h2>
+                <div class="hint">
+                    <p>💡 Visit your live Experience Cloud URL and test all the capabilities we've built! Complete each test below:</p>
+        </div>
+
+                <details class="step" data-step="ex9-step1" open>
+                    <summary>
+                        <div class="step-header">
+                            <div class="step-left">
+                                <span class="step-number">1</span>
+                                <span class="step-title">Test Knowledge Base Query</span>
+                            </div>
+                            <button class="status-button" onclick="toggleStep(event, 'ex9-step1')">
+                                <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </summary>
+                    <div class="step-content">
+                        <p>Test the agent's ability to answer questions from the Knowledge Base with these two examples:</p>
+                        
+                        <p><strong>Example 1:</strong></p>
+                        <div class="code-block">
+                            <pre>What are the business hours for Coral Clouds support?</pre>
+                        </div>
+                        
+                        <p><strong>Example 2:</strong></p>
+                        <div class="code-block">
+                            <pre>How do I reset my password?</pre>
+                        </div>
+                        
+                        <div class="hint" style="background-color: #d4edda; border-left-color: #28a745;">
+                            <p>✅ <strong>Expected Result:</strong> The agent should retrieve and provide information from the Knowledge articles.</p>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="step" data-step="ex9-step2" open>
+                    <summary>
+                        <div class="step-header">
+                            <div class="step-left">
+                                <span class="step-number">2</span>
+                                <span class="step-title">Test Case Creation</span>
+                            </div>
+                            <button class="status-button" onclick="toggleStep(event, 'ex9-step2')">
+                                <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </summary>
+                    <div class="step-content">
+                        <p>Test the agent's ability to create a case through an interactive conversation:</p>
+                        <div class="code-block">
+                            <pre>I need help creating a support case</pre>
+                        </div>
+                        
+                        <p><strong>What to expect:</strong></p>
+                        <ul>
+                            <li>The agent will ask you for information to create the case</li>
+                            <li>The agent will request: <strong>Subject</strong>, <strong>Email</strong>, and <strong>Description</strong></li>
+                            <li>Provide the requested information interactively</li>
+                            <li>The agent will use the Flow to create the case</li>
+                            <li>You should receive a confirmation with the case number</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="step" data-step="ex9-step3" open>
+                    <summary>
+                        <div class="step-header">
+                            <div class="step-left">
+                                <span class="step-number">3</span>
+                                <span class="step-title">Test Account Summary with Apex Action</span>
+                            </div>
+                            <button class="status-button" onclick="toggleStep(event, 'ex9-step3')">
+                                <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </summary>
+                    <div class="step-content">
+                        <p>Test the agent's ability to retrieve account information using the custom Apex action:</p>
+                        <div class="code-block">
+                            <pre>Can you show me my account summary?</pre>
+                        </div>
+                        
+                        <p><strong>What to expect:</strong></p>
+                        <ul>
+                            <li>The agent will ask you for your <strong>email address</strong></li>
+                            <li>Provide the email:</li>
+                        </ul>
+                        <div class="code-block">
+                            <pre>sofiarodriguez@example.com</pre>
+                        </div>
+                        
+                        <div class="hint" style="background-color: #d4edda; border-left-color: #28a745;">
+                            <p>✅ <strong>Expected Result:</strong> The agent will use the Apex action to retrieve and display the contact and account information.</p>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="step" data-step="ex9-step4" open>
+                    <summary>
+                        <div class="step-header">
+                            <div class="step-left">
+                                <span class="step-number">4</span>
+                                <span class="step-title">Test Escalation to Human Agent</span>
+                            </div>
+                            <button class="status-button" onclick="toggleStep(event, 'ex9-step4')">
+                                <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </summary>
+                    <div class="step-content">
+                        <p><strong>Before testing escalation, set yourself as Available in Service Console:</strong></p>
+                        <ul>
+                            <li>Open the <strong>Service Console</strong> app from the App Launcher</li>
+                            <li>Look for the <strong>Omni-Channel</strong> widget in the footer (bottom of the screen)</li>
+                            <li>If you don't see the Omni-Channel widget, go to <strong>Setup > Feature Settings > Service > Omni-Channel Settings</strong> and ensure your user has access</li>
+                            <li>Click on the Omni-Channel status dropdown and change your status from <strong>Offline</strong> to <strong>Available</strong></li>
+                            <li>You're now ready to receive escalated conversations!</li>
+                        </ul>
+                        
+                        <div class="hint">
+                            <p>💡 <strong>Tip:</strong> Keep the Service Console open in a separate browser tab or window while testing escalations from the Experience Site.</p>
+                        </div>
+                        
+                        <p><strong>Test the Escalation Flow:</strong></p>
+                        <p>Visit your live Experience Cloud URL and interact with the Agentforce chatbot. Request escalation using the following prompt:</p>
+                        <div class="code-block">
+                            <pre>I need to speak with a human agent immediately.</pre>
+                        </div>
+                        
+                        <p><strong>What to expect:</strong></p>
+                        <ul>
+                            <li>Type the escalation prompt in the Experience Site chat</li>
+                            <li>The agent will acknowledge and inform you that it will escalate you to a human agent</li>
+                            <li>Switch to your <strong>Service Console</strong> tab where you set yourself as Available</li>
+                            <li>You should see a notification for an incoming conversation in the Omni-Channel widget</li>
+                            <li>Click <strong>Accept</strong> to take the conversation</li>
+                            <li><strong>Important:</strong> Notice that the <strong>Case record</strong> you created earlier is already attached to this messaging session in the Service Console!</li>
+                            <li>Return to the Experience Site and continue the conversation - you're now chatting as the human agent!</li>
+                            <li>Test sending messages from both sides to verify the escalation is working properly</li>
+                        </ul>
+                        
+                    </div>
+                </details>
+            </section>
+
+                        <div class="hint" style="padding: 30px 25px; margin-top: 30px; font-size: 1.1em; line-height: 1.7;">
+                            <p style="margin: 0;">
+                                <span style="font-size: 1.4em; font-weight: bold; display: block; margin-bottom: 15px;">
+                                    <span style="font-size: 1.8em;">🎉</span> Congratulations!
+                                </span>
+                                If you reached this far, you've successfully built and tested a fully functional Agentforce Service Agent with Knowledge Base integration, case creation, account summary, custom actions, and human escalation capabilities!
+                            </p>
+                        </div>
+                        
+                        <div class="hint" style="background-color: #cfe2ff; border-left-color: #0d6efd; padding: 30px 25px; margin-top: 20px; font-size: 1.1em; line-height: 1.7;">
+                            <p style="margin: 0;">
+                                <span style="font-size: 1.4em; font-weight: bold; display: block; margin-bottom: 15px;">
+                                    <span style="font-size: 1.8em;">🚀</span> Want to learn more?
+                                </span>
+                                Explore advanced Agentforce workshops covering Data Cloud, Prompt Builder, RAG (Retrieval Augmented Generation), MuleSoft integration, and more advanced AI topics to take your skills to the next level!
+                                <br><br>
+                                <a href="https://developer.salesforce.com/agentforce-workshop" target="_blank" style="color: #084298; font-weight: bold; font-size: 1.1em; text-decoration: underline;">Visit Agentforce Workshops →</a>
+                            </p>
+                        </div>
+                        
+                        <div class="hint" style="background-color: #d4edda; border-left-color: #28a745; padding: 30px 25px; margin-top: 20px; font-size: 1.1em; line-height: 1.7;">
+                            <p style="margin: 0;">
+                                <span style="font-size: 1.4em; font-weight: bold; display: block; margin-bottom: 15px;">
+                                    <span style="font-size: 1.8em;">📝</span> Help us improve!
+                                </span>
+                                Your feedback is valuable and completely anonymous. Please take a moment to share your experience:
+                                <br><br>
+                                <a href="[FEEDBACK_LINK_PLACEHOLDER]" target="_blank" style="color: #155724; font-weight: bold; font-size: 1.1em; text-decoration: underline;">Submit Feedback →</a>
+                            </p>
+                        </div>
         </div>
     </div>
 
