@@ -44,10 +44,10 @@
                 <a href="#prework" data-section="prework">Pre-Work & Setup</a>
                 <a href="#ex1" data-section="ex1">Explore the Employee Agent</a>
             <a href="#ex2" data-section="ex2">1. Service Agent (ASA)</a>
-            <a href="#ex3" data-section="ex3">2. Knowledge Base</a>
-            <a href="#ex4" data-section="ex4">3. Custom Action - Flow</a>
-            <a href="#ex6" data-section="ex6">4. Custom Action - Prompt</a>
-            <a href="#ex5" data-section="ex5">5. Custom Action - Apex</a>
+            <a href="#ex4" data-section="ex4">2. Custom Action - Flow</a>
+            <a href="#ex6" data-section="ex6">3. Custom Action - Prompt</a>
+            <a href="#ex5" data-section="ex5">4. Custom Action - Apex</a>
+            <a href="#ex3" data-section="ex3">5. Agentforce Search & RAG</a>
             <a href="#ex7" data-section="ex7">6. Escalation</a>
             <a href="#ex8" data-section="ex8">7. Publishing the Agent</a>
             <a href="#ex9" data-section="ex9">8. Testing</a>
@@ -76,9 +76,9 @@
 
                     <h3>Agent Key Capabilities:</h3>
                     <ul>
-                        <li><strong>Intelligent Case Creation:</strong> Automatically gather information and create a Case linked to the customer's live chat session using a custom Flow.</li>
+                        <li><strong>Intelligent Case Creation:</strong> gather informations from the customer and create a Case linked to the customer's live chat session using a custom Flow.</li>
                         <li><strong>Contextual Summaries:</strong> Use a custom Apex action to retrieve customer contact details, and then an intelligent Prompt to summarize their account, including open cases and activities.</li>
-                        <li><strong>Knowledge-Based Answers:</strong> Answer common customer queries by searching the Salesforce Knowledge Base using the standard Answer Questions with Knowledge action.</li>
+                        <li><strong>Knowledge-Based Answers:</strong> Answer common customer queries by searching uploaded PDF files using a custom action and RAG.</li>
                         <li><strong>Smooth Escalation:</strong> Route complex or unresolved issues directly to a human service agent using an Omni-Channel Flow.</li>
                     </ul>
                 </div>
@@ -110,7 +110,9 @@
                     </summary>
                     <div class="step-content">
                         <p><strong>Self-Service Setup through Trailhead</strong></p>
-                        
+                        <div class="warning">
+                            <p>⚠️ Don't work on the trailhead module the goal is just to create the org using the same module link!</strong></p>
+                        </div>
                         <ol>
                             <li>On Trailhead go to the <a class="link" target="_blank" href="https://trailhead.salesforce.com/content/learn/projects/quick-start-explore-the-coral-cloud-sample-app/deploy-the-coral-cloud-sample-app">Quick Start: Explore the Coral Cloud Sample App</a> badge, and get a new <strong>Custom Data Cloud Playground org</strong>.</li>
                             <li>Login then go to the <strong>This Badge Requires a New Custom Data Cloud Playground</strong> and click <strong>Create Playground</strong></li>
@@ -120,9 +122,8 @@
                         </ol>
 
                         <div class="warning">
-                            <p><strong>⚠️ IMPORTANT: </strong>
-                            <p>Recently we have seen some issues in the newly created orgs, please make sure the org has Knowledge Articles and Account records.</strong></p>
-                            <p>If one of these is missing consider creating another org quickly to avoid missing some parts of the agent!</p>
+                            <p>⚠️ Recently we have seen some issues in the newly created orgs, please make sure the org has few Account records.</strong></p>
+                            <p>If no account record is found consider creating 1-2 accounts with few activities and cases for testing!</p>
                         </div>
                         
                         <div class="warning">
@@ -302,6 +303,45 @@
                         
                         <div class="image-placeholder">
                             <img src="images/pic-prework-step6.jpg" alt="Enable Agentforce" class="instruction-image">
+                        </div>
+                    </div>
+                </details>
+
+                <details class="step" data-step="prework-step7" open>
+                    <summary>
+                        <div class="step-header">
+                            <div class="step-left">
+                                <span class="step-number">7</span>
+                                <span class="step-title">Enable Enhanced Omni-Channel Routing</span>
+                            </div>
+                            <button class="status-button" onclick="toggleStep(event, 'prework-step7')">
+                                <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </summary>
+                    <div class="step-content">
+                        <p><strong>Enable Enhanced Omni-Channel and configure the Service Console sidebar</strong></p>
+                        
+                        <div class="hint">
+                            <p>💡 We'll need the Omni-Channel sidebar to see and handle upcoming user escalations from the agent.</p>
+                        </div>
+                        
+                        <ol>
+                            <li>In <strong>Setup</strong>, search for <strong>Omni-Channel Settings</strong> in the quick find box.</li>
+                            <li>Click <strong>Omni-Channel Settings</strong>.</li>
+                            <li>Turn on the <strong>Enhanced Omni-Channel Routing</strong> toggle.</li>
+                            <li>Click <strong>Confirm</strong> in the popup dialog, then click <strong>Save</strong>.</li>
+                            <li>Go back to <strong>Setup</strong>, search for <strong>App Manager</strong> in the quick find box.</li>
+                            <li>Locate the <strong>Service Console</strong> app and click the dropdown arrow, then select <strong>Edit</strong>.</li>
+                            <li>In the left navigation, click on <strong>App Options</strong>.</li>
+                            <li>Check the <strong>Use Omni-Channel sidebar</strong> checkbox.</li>
+                            <li>Click <strong>Save</strong> to save the app changes.</li>
+                        </ol>
+                        
+                        <div class="image-placeholder">
+                            <img src="images/pic-prework-step7.jpg" alt="Enable Enhanced Omni-Channel Routing" class="instruction-image">
                         </div>
                     </div>
                 </details>
@@ -523,9 +563,9 @@
                     <br />
                     <p>Now let's create our main Agent <strong>the Coral Clouds Service Agent</strong>!</p>
                     <br />
-                    <p>This new Agentforce agent of type Service Agent will be exposed to customers. It will assist with case creation, escalations, and retrieving account summaries. Additionally, it will leverage knowledge articles through Data Cloud and ADL (Agentforce Data Library) to provide relevant answers.</p>
+                    <p>This new Agentforce agent of type Service Agent will be exposed to customers. It will assist with case creation, escalations, and retrieving account summaries. Additionally, it will leverage uploaded PDF files through Data Cloud and Agentforce Search with RAG (Retrieval Augmented Generation) to provide relevant answers.</p>
                     <br />
-                    <p>We'll first set up the agent structure and knowledge, then build custom components (Flow, Apex, Prompt Builder) that will be added to it as custom actions and finally we'll setup escalation and agent connections.</p>
+                    <p>We'll first set up the agent structure and data sources, then build custom components (Flow, Apex, Prompt Builder) that will be added to it as custom actions and finally we'll setup escalation and agent connections.</p>
                 </div>
 
                 
@@ -717,13 +757,6 @@
                                     <td>Read</td>
                                     <td>All Fields</td>
                                 </tr>
-                                <tr>
-                                    <td>Object</td>
-                                    <td><strong>Knowledge__kav</strong></td>
-                                    <td>Read/View All Records/View All Fields</td>
-                                    <td>Read</td>
-                                    <td>All Fields</td>
-                                </tr>
                             </tbody>
                         </table>
 
@@ -740,86 +773,7 @@
 
             <hr>
 
-            <!-- Exercise 3 -->
-            <section id="ex3" data-section="ex3">
-                <h2>2️⃣ Answer from Knowledge</h2>
-                <div class="hint">
-                    <p>💡 This section uses the standard feature Answer Questions with Knowledge, relying on existing Salesforce Knowledge Articles.</p>
-                </div>
-
-                <details class="step" data-step="ex3-step1" open>
-                    <summary>
-                        <div class="step-header">
-                            <div class="step-left">
-                                <span class="step-number">1</span>
-                                <span class="step-title">Use the Standard General FAQ Topic</span>
-                            </div>
-                            <button class="status-button" onclick="toggleStep(event, 'ex3-step1')">
-                                <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </summary>
-                    <div class="step-content">
-                        <ul>
-                            <li>In the <strong>Agent Builder</strong> for Coral Clouds Service Agent, add the standard General FAQ topic (Add from asset library).</li>
-                            <li>Ensure the standard action <strong>Answer Questions with Knowledge</strong> is attached to this topic.</li>
-                            <div class="warning">
-                                <p>Now you have added the Topic and Action but you still need the Data library.</p>
-                            </div>     
-                            <li>Click <strong>Data</strong> menu in the Agent Builder side-bar</li>    
-                            <li>New Library with Name <Strong>Coral Clouds Service Agent Library</Strong></li>
-                            <li>Data Type: <Strong>Knowledge</Strong></li>         
-                            <li>Identifying fields: <Strong>Title</Strong> & <strong>Summary</strong></li>      
-                            <li>Content Fields: <Strong>Answer</Strong> & <strong>Details</strong></li>      
-                            <li>The agent will now use RAG (<a class="link" target="_blank" href='https://www.salesforce.com/agentforce/what-is-rag/'>Retrieval Augmented Generation</a>) to answer questions using your Knowledge articles.</li>
-                        </ul>
-                        
-                        <div class="image-placeholder">
-                            <img src="images/pic-ex3-step1.jpg" alt="Knowledge AQWK screenshot" class="instruction-image">
-                        </div>
-                    </div>
-                </details>
-
-                <details class="step" data-step="ex3-step2" open>
-                    <summary>
-                        <div class="step-header">
-                            <div class="step-left">
-                                <span class="step-number">2</span>
-                                <span class="step-title">Test the Knowledge Base Integration</span>
-                            </div>
-                            <button class="status-button" onclick="toggleStep(event, 'ex3-step2')">
-                                <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </summary>
-                    <div class="step-content">
-                        <p>Test the <strong>General FAQ</strong> topic with the knowledge base data library.</p>
-                        
-                        <p>Go to the Agent Builder <strong>Conversation Preview</strong> and type:</p>
-                        <div class="code-block">
-                            <pre>Do you ship to Morocco?</pre>
-                        </div>
-
-                        <div class="hint">
-                            <p>💡 The agent should use RAG (Retrieval Augmented Generation) to search the knowledge articles and provide an accurate answer based on the shipping policies in your knowledge base.</p>
-                        </div>
-
-                        <div class="warning">
-                            <p>⚠️ Verify the agent reasoning shows the "Answer Questions with Knowledge" action being called and that the response includes relevant information from your knowledge articles.</p>
-                        </div>
-                        
-                        <div class="image-placeholder">
-                            <img src="images/pic-ex3-step2.jpg" alt="Testing Knowledge Base screenshot" class="instruction-image">
-                        </div>
-                    </div>
-                </details>
-            </section>
-
-            <hr>
+            
 
             <div class="hint">
                     <h4>ℹ️ Custom Actions</h4>
@@ -833,7 +787,7 @@
             <!-- Exercise 4 -->
             <section id="ex4" data-section="ex4">
                 
-                <h2>3️⃣ Custom Action - Flow (Case Creation)</h2>
+                <h2>2️⃣ Custom Action - Flow (Case Creation)</h2>
                 
                 
 
@@ -1374,6 +1328,12 @@
                             <pre>sofiarodriguez@example.com</pre>
                         </div>
                         <div class="hint">
+                            <p>💡 The agent will ask you about the issue if it wasn't already communicated during the session:</p>
+                        </div>
+                        <div class="code-block">
+                            <pre>I didn't receive any confirmation email for my reservation yesterday number 199292 </pre>
+                        </div>
+                        <div class="hint">
                             <p>💡 The agent will then create a new case using the flow action you created.</p>
                         </div>
                         <div class="warning">
@@ -1394,7 +1354,7 @@
 
             <!-- Exercise 6 -->
             <section id="ex6" data-section="ex6">
-                <h2>4️⃣ Custom Action - Prompt (Account Summary)</h2>
+                <h2>3️⃣ Custom Action - Prompt (Account Summary)</h2>
                 <div class="hint">
                     <p>💡 We will create a prompt to return a summary from CRM Data on-demand.</p>
                 </div>
@@ -1729,7 +1689,7 @@ When generating the HTML, you must use semantic elements whenever possible:
 
             <!-- Exercise 5 -->
             <section id="ex5" data-section="ex5">
-                <h2>5️⃣ Custom Action - Invocable Apex class</h2>
+                <h2>4️⃣ Custom Action - Invocable Apex class</h2>
                 <div class="hint">
                     <p>💡 This action retrieves the Contact and Account ID based on the customer's email.</p>
                 </div>
@@ -2017,6 +1977,347 @@ public class ContactLookup {
                         
                         <div class="image-placeholder">
                             <img src="images/pic-ex5-step4.jpg" alt="Testing Account Management topic with both actions screenshot" class="instruction-image">
+                        </div>
+                    </div>
+                </details>
+            </section>
+
+            <hr>
+<!-- Exercise 3 -->
+            <section id="ex3" data-section="ex3">
+                <h2>5️⃣ Ground Agent with Agentforce Search using RAG</h2>
+                <div class="hint">
+                    <p>💡 In this section, you'll create a Flex Prompt template to enable users to ask questions about Coral Cloud Resorts' policies. You'll use Agentforce Search to ground the prompt with unstructured data from uploaded PDF files using RAG (Retrieval Augmented Generation).</p>
+                </div>
+
+                <details class="step" data-step="ex3-step1" open>
+                    <summary>
+                        <div class="step-header">
+                            <div class="step-left">
+                                <span class="step-number">1</span>
+                                <span class="step-title">Use the Standard General FAQ Topic and Add Files Data Library</span>
+                            </div>
+                            <button class="status-button" onclick="toggleStep(event, 'ex3-step1')">
+                                <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </summary>
+                    <div class="step-content">
+                        <ul>
+                            <li>In the <strong>Agent Builder</strong> for Coral Clouds Service Agent, add the standard General FAQ topic (Add from asset library).</li>
+                            <li>Ensure the standard action <strong>Answer Questions with Knowledge</strong> is attached to this topic.</li>
+                            <div class="warning">
+                                <p>Now you have added the Topic and Action but you still need the Data library.</p>
+                            </div>     
+                            <li>Click <strong>Data</strong> menu in the Agent Builder side-bar</li>    
+                            <li>Add a data library to the agent as follows:
+                                <ul style="margin-top: 10px;">
+                                    <li><strong>Data Library:</strong> New Library</li>
+                                    <li><strong>Library Name:</strong> Coral Clouds Service Agent Library (Leave default)</li>
+                                    <li><strong>Data Type:</strong> <strong>Files</strong></li>
+                                    <li><strong>Data Space:</strong> Leave default</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <p>Download the following Documents to your computer:</p>
+                                <p>Coral Cloud Resorts stores various types of information as PDFs in Amazon S3. Check out some of these PDFs below to familiarize yourself with their content:</p>
+                                <ul style="margin-top: 10px;">
+                                    <li><a href="https://coral-cloud.s3.amazonaws.com/agentforce-rag/experiences.pdf" target="_blank" rel="noreferrer">experiences.pdf</a></li>
+                                    <li><a href="https://coral-cloud.s3.amazonaws.com/agentforce-rag/hotel-policies.pdf" target="_blank" rel="noreferrer">hotel-policies.pdf</a></li>
+                                    <li><a href="https://coral-cloud.s3.amazonaws.com/agentforce-rag/valet-services-policies.pdf" target="_blank" rel="noreferrer">valet-services-policies.pdf</a></li>
+                                    <li><a href="https://coral-cloud.s3.amazonaws.com/agentforce-rag/wedding-planning-guide.pdf" target="_blank" rel="noreferrer">wedding-planning-guide.pdf</a></li>
+                                </ul>
+                            </li>
+                            <li>Click on <strong>Upload Files</strong> and select all four documents.</li>
+                            <li>Once uploaded, Click <strong>Done</strong>.</li>
+                            <li>The agent will now use RAG (<a class="link" target="_blank" href='https://www.salesforce.com/agentforce/what-is-rag/'>Retrieval Augmented Generation</a>) to answer questions using your uploaded PDF files.</li>
+                        </ul>
+                        
+                        <div class="image-placeholder">
+                            <img src="images/pic-ex3-step1.jpg" alt="Files Data Library Configuration" class="instruction-image">
+                        </div>
+                    </div>
+                </details>
+
+                <details class="step" data-step="ex3-step2" open>
+                    <summary>
+                        <div class="step-header">
+                            <div class="step-left">
+                                <span class="step-number">2</span>
+                                <span class="step-title">Verify Data Cloud Index Status</span>
+                            </div>
+                            <button class="status-button" onclick="toggleStep(event, 'ex3-step2')">
+                                <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </summary>
+                    <div class="step-content">
+                        <p>After uploading the PDF files, it's important to verify that Data Cloud has successfully indexed them for Agentforce Search to use with RAG.</p>
+                        
+                        <ul>
+                            <li>In the App Launcher, search for <strong>Data Cloud</strong> and open it.</li>
+                            <li>In Data Cloud, navigate to <strong>Data Explorer</strong> from the left sidebar.</li>
+                            <li>Pick <strong>Data Model Object</strong> as Object type.</li>
+                            <li>Look for a type with name <strong>RagFileUDMO</strong></li>
+                            <li>Look for your uploaded files in the list. Names may not appear but you should see the four PDF files you uploaded:
+                                <ul style="margin-top: 10px;">
+                                    <li>experiences.pdf</li>
+                                    <li>hotel-policies.pdf</li>
+                                    <li>valet-services-policies.pdf</li>
+                                    <li>wedding-planning-guide.pdf</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <div class="image-placeholder">
+                            <img src="images/pic-ex3-step2-index1.jpg" alt="Data Cloud Unstructured Data View" class="instruction-image">
+                        </div>
+
+                        <p>Verify also that the Index was created and check its status.</p>
+
+                        <ul>
+                            <li>Click <strong>More</strong> then <strong>Search Index</strong>.</li>
+                            <li>You should find an Index with name like <strong>FileUDMO_SI</strong>.</li>
+                            <li>Open it and make sure the <strong>Search Index Last Run Status</strong> is <strong>Ready</strong></li>
+                        </ul>
+
+                        <div class="hint">
+                            <p>💡 The indexing process may take a few minutes. If you see status as "Indexing" or "In Progress", wait a few minutes and refresh the page. Once the status is "Ready", Agentforce Search can retrieve information from them.</p>
+                        </div>
+
+                        <div class="image-placeholder">
+                            <img src="images/pic-ex3-step2-index2.jpg" alt="File Details and Index Status" class="instruction-image">
+                        </div>
+
+                        <div class="warning">
+                            <p>⚠️ <strong>Important:</strong> If the indexing fails or shows an error status, you may need to re-upload the files and create the Data Library again. If indexing takes longer than 10-15 minutes, consider rebuilding the index from the Data Cloud settings.</p>
+                        </div>
+
+                        <div class="hint" style="background-color: #d4edda; border-left-color: #28a745;">
+                            <p>✅ Once all files are successfully indexed, Agentforce Search will be able to retrieve relevant chunks of information from these PDFs when answering user questions using RAG.</p>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="step" data-step="ex3-step3" open>
+                    <summary>
+                        <div class="step-header">
+                            <div class="step-left">
+                                <span class="step-number">3</span>
+                                <span class="step-title">Create the Flex Prompt Template</span>
+                            </div>
+                            <button class="status-button" onclick="toggleStep(event, 'ex3-step3')">
+                                <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </summary>
+                    <div class="step-content">
+                        <p>Create a Flex Prompt template that will use the created index to answer policy questions.</p>
+                        
+                        <ul>
+                            <li>Click the back arrow button to go back to <strong>Setup</strong>.</li>
+                            <li>In Setup, search for <strong>Prompt Builder</strong>, and select <strong>Prompt Builder</strong>.</li>
+                            <li>Click the <strong>New Prompt Template</strong> button.</li>
+                            <li>Configure the template as follows:
+                                <ul style="margin-top: 10px;">
+                                    <li><strong>Prompt Template Type:</strong> Flex</li>
+                                    <li><strong>Prompt Template Name:</strong> Policy Questions</li>
+                                    <li><strong>API Name:</strong> Keep default</li>
+                                    <li><strong>Template Description:</strong> Answer customer questions about Coral Cloud Resorts' policies.</li>
+                                    <li><strong>Resource Name:</strong> question</li>
+                                    <li><strong>API Name:</strong> question</li>
+                                    <li><strong>Object:</strong> Free Text</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>Click <strong>Next</strong>.</li>
+                            <li>Paste the following text in the <strong>Prompt text area</strong>:</li>
+                        </ul>
+
+                        <div class="code-block">
+                            <pre>Your task is to provide clear and helpful answers to customer inquiries about Coral Cloud Resorts' policies.
+
+Here's the customer's question:
+QUESTION_QUERY
+
+Please use the following information to help you answer the question:
+SEARCH_RESULTS
+
+Remember to tailor your response to the specific question, focusing on the relevant details.
+
+Your tone should be friendly and informative, as if you were speaking directly to the customer.</pre>
+                        </div>
+
+                        <ul>
+                            <li>Replace the placeholders with the corresponding merge fields (click <strong>Insert Resource</strong> link to access merge fields):
+                                <ul style="margin-top: 10px;">
+                                    <li><strong>QUESTION_QUERY:</strong> Free Text > Question</li>
+                                    <li><strong>SEARCH_RESULTS:</strong> Search > RagFileUDMO > File_Coral_Clouds_Service_Agent_Library</li>
+                                </ul>
+                            </li>
+                            <li>In the <strong>Template Settings</strong> sidebar, configure Search Parameters as follows:
+                                <ul style="margin-top: 10px;">
+                                    <li><strong>Search Text:</strong> Free Text > Question</li>
+                                    <li><strong>Output Fields:</strong> Chunk</li>
+                                    <li><strong>Number of Results:</strong> 5</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <p>Use the screenshot below to make sure that you entered the values correctly.</p>
+
+                        <div class="image-placeholder">
+                            <img src="images/pic-ex3-step3b.jpg" alt="Prompt Template Settings" class="instruction-image">
+                        </div>
+
+                        <ul>
+                            <li>Click <strong>Save & Preview</strong>.</li>
+                            <li>In the <strong>Preview Settings</strong> sidebar, enter the following text into the <strong>Question</strong> field:</li>
+                        </ul>
+
+                        <div class="code-block">
+                            <pre>What is the resort's cancellation policy?</pre>
+                        </div>
+
+                        <ul>
+                            <li>Click <strong>Preview</strong>.</li>
+                        </ul>
+
+                        <div class="hint">
+                            <p>💡 In the <strong>Resolved Prompt</strong> panel, examine the prompt that was generated. The JSON structure represents the weighted responses from Agentforce Search. In the <strong>Generated Response</strong> panel, examine the response the LLM generated.</p>
+                        </div>
+
+                        <ul>
+                            <li>Enter another prompt in the Input field to test:</li>
+                        </ul>
+
+                        <div class="code-block">
+                            <pre>What wedding venue options are available at Coral Cloud Resorts?</pre>
+                        </div>
+
+                        <ul>
+                            <li>Click <strong>Preview</strong>.</li>
+                            <li>Click <strong>Activate</strong>.</li>
+                        </ul>
+
+                        <div class="warning">
+                            <p>⚠️ This prompt template can now be used from Apex, Flow, or within an agent.</p>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="step" data-step="ex3-step4" open>
+                    <summary>
+                        <div class="step-header">
+                            <div class="step-left">
+                                <span class="step-number">4</span>
+                                <span class="step-title">Create a New Agent Action</span>
+                            </div>
+                            <button class="status-button" onclick="toggleStep(event, 'ex3-step4')">
+                                <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </summary>
+                    <div class="step-content">
+                        <p>Create a new agent action that uses the Flex Prompt template you just created.</p>
+                        
+                        <ul>
+                            <li>Go back to the <strong>Coral Clouds Service Agent</strong> in the builder.</li>
+                            <li>Select the <strong>General FAQ</strong> topic.</li>
+                            <li>To edit this topic, click <strong>New Version</strong> in the bottom of the topic panel.</li>
+                        </ul>
+
+                        <ul>
+                            <li>Immediately click on <strong>Save</strong> to save the topic.</li>
+                            <li>Open the new <strong>General FAQ</strong> topic.</li>
+                            <li>Click on the <strong>This Topic's Actions</strong> tab in the topic details.</li>
+                            <li>Click on the <strong>Menu button</strong> next to the <strong>Answer Questions with Knowledge</strong> Action and click <strong>Remove from Topic</strong>.</li>
+                            <li>Click on the <strong>New</strong> drop down and click on <strong>Create New Action</strong>.</li>
+                            <li>Configure the action:
+                                <ul style="margin-top: 10px;">
+                                    <li><strong>Reference Action Type:</strong> Prompt Template</li>
+                                    <li><strong>Reference Action:</strong> Policy Questions</li>
+                                    <li><strong>Agent Action Label:</strong> Keep default</li>
+                                    <li><strong>Agent Action API Name:</strong> Keep default</li>
+                                </ul>
+                            </li>
+                            <li>Click <strong>Next</strong>.</li>
+                            <li>Enter the following loading text:</li>
+                        </ul>
+
+                        <div class="code-block">
+                            <pre>Getting information...</pre>
+                        </div>
+
+                        <ul>
+                            <li>Enter the following Instructions for the <strong>Question</strong> Input:</li>
+                        </ul>
+
+                        <div class="code-block">
+                            <pre>The question is open-ended text input from a user in a chat, related to resort policies.</pre>
+                        </div>
+
+                        <ul>
+                            <li>For the <strong>Prompt Response</strong> Output, check <strong>Show in conversation</strong>.</li>
+                        </ul>
+                        <ul>
+                            <li>Click <strong>Finish</strong>.</li>
+                        </ul>
+
+                        <div class="hint">
+                            <p>💡 The agent action is now ready to use the Flex Prompt template with Agentforce Search for grounded responses.</p>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="step" data-step="ex3-step5" open>
+                    <summary>
+                        <div class="step-header">
+                            <div class="step-left">
+                                <span class="step-number">5</span>
+                                <span class="step-title">Test the Agent with Agentforce Search</span>
+                            </div>
+                            <button class="status-button" onclick="toggleStep(event, 'ex3-step5')">
+                                <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </summary>
+                    <div class="step-content">
+                        <p>Test the Coral Clouds Service Agent with the new Agentforce Search-powered action.</p>
+                        
+                        <ul>
+                            <li>You are now inside <strong>Agentforce Builder</strong>. Click <strong>Got it</strong> to confirm that you would like to test out Agentforce.</li>
+                            <li>Enter the following prompt in the <strong>Conversation Preview</strong>:</li>
+                        </ul>
+
+                        <div class="code-block">
+                            <pre>How do I request late check out?</pre>
+                        </div>
+
+                        <div class="hint">
+                            <p>💡 Examine the plan in the middle of the screen. To perform this task, the reasoning engine should select the <strong>General FAQ Topic</strong> and the <strong>Policy Questions Action</strong>.</p>
+                        </div>
+                        <div class="warning">
+                            <p>⚠️ Verify the agent reasoning shows the custom Policy Questions action being called and that the response includes relevant information from your uploaded PDF files retrieved through Agentforce Search.</p>
+                        </div>
+
+                        <ul>
+                            <li>Click <strong>Activate</strong> to make the agent available.</li>
+                        </ul>
+
+                        <div class="hint" style="background-color: #d4edda; border-left-color: #28a745;">
+                            <p>✅ <strong>Success!</strong> Your Coral Clouds Service Agent is now using Agentforce Search with RAG to provide grounded, accurate responses from your uploaded PDF files. The agent can now intelligently search through policy documents, wedding guides, hotel policies, and experience information to answer customer questions.</p>
                         </div>
                     </div>
                 </details>
@@ -2392,7 +2693,7 @@ public class ContactLookup {
                         <div class="step-header">
                             <div class="step-left">
                                 <span class="step-number">1</span>
-                                <span class="step-title">Test Knowledge Base Query</span>
+                                <span class="step-title">Test Files Query</span>
                             </div>
                             <button class="status-button" onclick="toggleStep(event, 'ex9-step1')">
                                 <svg class="icon-check" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2402,7 +2703,7 @@ public class ContactLookup {
                         </div>
                     </summary>
                     <div class="step-content">
-                        <p>Test the agent's ability to answer questions from the Knowledge Base with these two examples:</p>
+                        <p>Test the agent's ability to answer questions from the uploaded PDF files with these two examples:</p>
                         
                         <p><strong>Example 1:</strong></p>
                         <div class="code-block">
@@ -2415,7 +2716,7 @@ public class ContactLookup {
                         </div>
                         
                         <div class="hint" style="background-color: #d4edda; border-left-color: #28a745;">
-                            <p>✅ <strong>Expected Result:</strong> The agent should retrieve and provide information from the Knowledge articles.</p>
+                            <p>✅ <strong>Expected Result:</strong> The agent should retrieve and provide information from the uploaded PDF files.</p>
                         </div>
                     </div>
                 </details>
@@ -2541,7 +2842,7 @@ public class ContactLookup {
                                 <span style="font-size: 1.4em; font-weight: bold; display: block; margin-bottom: 15px;">
                                     <span style="font-size: 1.8em;">🎉</span> Congratulations!
                                 </span>
-                                If you reached this far, you've successfully built and tested a fully functional Agentforce Service Agent with Knowledge Base integration, case creation, account summary, custom actions, and human escalation capabilities!
+                                If you reached this far, you've successfully built and tested a fully functional Agentforce Service Agent with Files integration, case creation, account summary, custom actions, and human escalation capabilities!
                             </p>
                         </div>
                         
@@ -2553,17 +2854,6 @@ public class ContactLookup {
                                 Explore advanced Agentforce workshops covering Data Cloud, Prompt Builder, RAG (Retrieval Augmented Generation), MuleSoft integration, and more advanced AI topics to take your skills to the next level!
                                 <br><br>
                                 <a href="https://developer.salesforce.com/agentforce-workshop" target="_blank" style="color: #084298; font-weight: bold; font-size: 1.1em; text-decoration: underline;">Visit Agentforce Workshops →</a>
-                            </p>
-                        </div>
-                        
-                        <div class="hint" style="background-color: #d4edda; border-left-color: #28a745; padding: 30px 25px; margin-top: 20px; font-size: 1.1em; line-height: 1.7;">
-                            <p style="margin: 0;">
-                                <span style="font-size: 1.4em; font-weight: bold; display: block; margin-bottom: 15px;">
-                                    <span style="font-size: 1.8em;">📝</span> Help us improve!
-                                </span>
-                                Your feedback is valuable and completely anonymous. Please take a moment to share your experience:
-                                <br><br>
-                                <a href="[FEEDBACK_LINK_PLACEHOLDER]" target="_blank" style="color: #155724; font-weight: bold; font-size: 1.1em; text-decoration: underline;">Submit Feedback →</a>
                             </p>
                         </div>
         </div>
